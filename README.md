@@ -8,4 +8,3 @@ UNSW DATA3001 T3 2026 (SM01, Group 8) - Global Drifter Program Project
 - Henrique Barroso
 - Lev Tolmachev
 - Haiming Zhang
-- 
