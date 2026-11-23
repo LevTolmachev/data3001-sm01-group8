@@ -1,0 +1,26 @@
+By latitude band (daily positions in R):
+          daily_positions  drifters  undrogued_share  median_age_days  median_age_undrogued  median_age_drogued
+band                                                                                                          
+45–50°S            22299       494             0.36            153.0                 250.0               119.0
+40–45°S            19420       309             0.40            161.0                 243.0               114.0
+35–40°S            26380       344             0.59            227.0                 376.0               113.0
+30–35°S            31329       325             0.67            308.0                 477.0               100.0
+
+Where drifters entering R were deployed, by the band they entered through:
+ band                                       45–50°S  40–45°S  35–40°S  30–35°S
+deployed                                                                     
+east (open South Atlantic)                       8        7        2       23
+inside R (+2°)                                  80       50       45       69
+north (tropical and subtropical Atlantic)        0        0        1      177
+south (Southern Ocean)                         370        1        0        0
+
+Drogue status and age on first entry, by origin:
+ drogued                                    drogued  undrogued  undrogued_share_on_entry  median_age_on_entry_days
+deployed                                                                                                         
+east (open South Atlantic)                      10         30                      0.75                     723.0
+inside R (+2°)                                 237          7                      0.03                       1.0
+north (tropical and subtropical Atlantic)       69        109                      0.61                     202.0
+south (Southern Ocean)                         257        114                      0.31                     127.0
+
+Days from deployment to drogue loss (GDP metadata, drifters seen in R): median 176, quartiles 80-332
+Saved /tmp/cleantest/data/models/step14/fig_drifter_age.png

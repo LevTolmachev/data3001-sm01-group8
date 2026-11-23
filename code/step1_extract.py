@@ -1,43 +1,30 @@
 """
-DATA3001 Group 8 - Initial analysis for the Project Proposal (Section 6)
-========================================================================
+DATA3001 S01-G8 - Step 1: extract the GDP hourly data for region R and the initial analysis
+===========================================================================================
+Streams NOAA's Global Drifter Program hourly product (v2.01.1, public Zarr store on AWS) once and keeps
+only rows inside R (30-50 S, 60-40 W) plus a 2 degree buffer, because the first position after a drifter
+leaves R tells us which edge it crossed. Writes, to the data folder (DATA3001_BASE, default <repo>/data):
 
-Produces (saved in Google Drive under MyDrive/DATA3001/initial_analysis)
-  fig1_data_support.png          -> Figure 1 in the proposal
-  fig2_preliminary_operator.png  -> Figure 2 in the proposal
-  table3_data_adequacy.csv       -> numbers for Table 3 (also printed)
-  + a printed list of the other numbers to paste into Section 6
+  gdp_bmc_extract.parquet   hourly rows (id, time, lat, lon, drogued)        input to every later step
+  gdp_bmc_daily.parquet     the 00 UTC row of each drifter-day only (small)  works as a drop-in input too
+  initial_analysis/         Table 3, Figures 1 and 2 of the proposal (fig1_data_support.png, ...)
 
-How to run in Google Colab (same set-up as our region_check notebook)
-  Start from a fresh runtime (Runtime -> Disconnect and delete runtime).
-  Cell 1:   !pip install -q "zarr<3"
-            (do NOT install clouddrift: it upgrades pandas/requests and breaks Colab)
-  Cell 2:   paste this whole file and run it. Approve the Google Drive prompt.
-  - The first run streams the GDP hourly product once and keeps only R plus a buffer
-    (roughly 20-60 min, keep the tab open). The extract is cached in your Drive as
-    gdp_bmc_extract.parquet, so later runs take seconds, even in a new session.
-  - Figures and the CSV are written to the same Drive folder.
-
-Using an extract you already have
-  Rename its columns to  id, time, lat, lon, drogued  (drogued = True/False per row) and
-  call main(your_df). It must cover R PLUS A BUFFER (BUFFER_DEG), because the first
-  position after a drifter leaves R is how exits are detected.
-
+Run:  uv run python code/step1_extract.py          (about 20-60 min the first time, then seconds)
+In Google Colab the same file works: it mounts Drive and uses MyDrive/DATA3001/initial_analysis.
 Everything depends only on CONFIG, so the same code works for any region R.
 """
-
 import os
-try:                                   # save everything in Google Drive when in Colab
-    from google.colab import drive
+import sys
+try:                                   # Google Colab: keep everything in Drive
+    from google.colab import drive     # noqa: F401
     drive.mount("/content/drive")
-    BASE = "/content/drive/MyDrive/DATA3001/initial_analysis"
-except ImportError:                    # not in Colab
-    BASE = "."
-except Exception as e:                 # Drive did not mount: files vanish when the session ends
-    print("WARNING: Google Drive did not mount (", e, "). Using temporary storage.")
-    BASE = "/content/DATA3001/initial_analysis"
+    BASE = os.environ.get("DATA3001_BASE", "/content/drive/MyDrive/DATA3001/initial_analysis")
+except ImportError:
+    _root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    BASE = os.environ.get("DATA3001_BASE", os.path.join(_root, "data"))
 os.makedirs(BASE, exist_ok=True)
-
+FIGDIR = os.path.join(BASE, "initial_analysis")
+os.makedirs(FIGDIR, exist_ok=True)
 
 import numpy as np
 import pandas as pd
@@ -55,6 +42,7 @@ H_SHORT, H_LONG = 7, 30     # horizons (days) shown in Fig. 2b/2c
 CURVE_DAYS = 180            # length of the retention curve in Fig. 2d
 MIN_DRIFTERS = 10           # "well supported" cell threshold for Table 3
 INPUT_FILE = os.path.join(BASE, "gdp_bmc_extract.parquet")   # created on the first run
+DAILY_FILE = os.path.join(BASE, "gdp_bmc_daily.parquet")      # 00 UTC rows only (small)
 GDP_URL = "https://noaa-oar-hourly-gdp-pds.s3.amazonaws.com/latest/gdp-v2.01.1.zarr"
 BLOCK = 5_000_000           # rows streamed per block (lower this if Colab runs out of memory)
 
@@ -251,7 +239,7 @@ def table3(df, tr, visits):
                 f"{(v['end'] == 'censored').mean() * 100:.0f}" if len(v) else "n/a",
         }
     tab = pd.DataFrame(out)
-    tab.to_csv(os.path.join(BASE, "table3_data_adequacy.csv"))
+    tab.to_csv(os.path.join(FIGDIR, "table3_data_adequacy.csv"))
     print("\n=== Table 3: data adequacy ===")
     print(tab.to_string())
     # Support for the seasonal split (RQ4)
@@ -336,8 +324,7 @@ def figure1(df):
     ax.legend(frameon=False, loc="upper left")
     ax.grid(axis="y", color="#e6e6e6", linewidth=0.6)
     ax.set_axisbelow(True)
-    fig.savefig(os.path.join(BASE, "fig1_data_support.png"), dpi=220, bbox_inches="tight")
-    plt.show()
+    fig.savefig(os.path.join(FIGDIR, "fig1_data_support.png"), dpi=220, bbox_inches="tight")
     plt.close(fig)
 
 
@@ -430,8 +417,7 @@ def figure2(P, counts_out):
     ax.set_title("(d) Even start: still in R or exited", loc="left")
     ax.set_xlabel("Days after release")
     ax.set_ylabel("Share of material (%)")
-    fig.savefig(os.path.join(BASE, "fig2_preliminary_operator.png"), dpi=220, bbox_inches="tight")
-    plt.show()
+    fig.savefig(os.path.join(FIGDIR, "fig2_preliminary_operator.png"), dpi=220, bbox_inches="tight")
     plt.close(fig)
 
     # numbers for the Section 6 text
@@ -448,6 +434,9 @@ def figure2(P, counts_out):
 
 
 # ----------------------------------------------------------------------------- main
+
+
+# ----------------------------------------------------------------------------- main
 def main(df):
     df = prepare(df)
     daily, tr = daily_transitions(df)
@@ -456,16 +445,30 @@ def main(df):
     figure1(df)
     P, counts_out = estimate_P(tr[tr["drogued"]])            # drogued operator for Fig. 2
     figure2(P, counts_out)
-    print(f"\nSaved fig1_data_support.png, fig2_preliminary_operator.png and table3_data_adequacy.csv to {BASE}")
+    print(f"\nSaved fig1_data_support.png, fig2_preliminary_operator.png and table3_data_adequacy.csv to {FIGDIR}")
+
+
+def load_extract():
+    """Read the cached extract, creating it from NOAA's Zarr store on the first run."""
+    if os.path.exists(INPUT_FILE):
+        print(f"Reading cached extract {INPUT_FILE}")
+        return pd.read_parquet(INPUT_FILE)
+    print("No cached extract yet: streaming R plus buffer from the GDP hourly product (20-60 min)...")
+    data = load_from_gdp()
+    data.to_parquet(INPUT_FILE, index=False)
+    print(f"Saved {len(data):,} rows to {INPUT_FILE}")
+    return data
 
 
 if __name__ == "__main__":
-    if os.path.exists(INPUT_FILE):
-        print(f"Reading cached extract {INPUT_FILE}")
-        data = pd.read_parquet(INPUT_FILE)
-    else:
-        print("No cached extract yet: streaming R plus buffer from the GDP hourly product...")
-        data = load_from_gdp()
-        data.to_parquet(INPUT_FILE)
-        print(f"Saved {len(data):,} rows to {INPUT_FILE}")
+    import matplotlib
+    if "ipykernel" not in sys.modules:
+        matplotlib.use("Agg")
+    data = load_extract()
+    if not os.path.exists(DAILY_FILE):
+        d = data.copy()
+        d["time"] = pd.to_datetime(d["time"]).dt.round("h")
+        d = d[d["time"].dt.hour == 0].drop_duplicates(["id", "time"])
+        d.to_parquet(DAILY_FILE, index=False)
+        print(f"Saved {len(d):,} daily rows to {DAILY_FILE}")
     main(data)

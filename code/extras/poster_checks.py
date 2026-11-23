@@ -1,3 +1,8 @@
+# Poster (Week 5): data checks, a first held-out check and 450 dpi figures. Historical; not needed for the report.
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from step1_extract import *          # noqa: F401,F403  (CONFIG, helpers, figures)
+data = load_extract()
 """
 DATA3001 Group S01-G8 - extra checks and high-resolution figures for the poster
 ================================================================================
@@ -149,7 +154,7 @@ ax[1].set_title("Error vs simple baseline", loc="left"); ax[1].legend(frameon=Fa
 for a in ax:
     a.grid(axis="y", color="#e6e6e6", lw=0.6); a.set_axisbelow(True)
 fig.savefig(f"{BASE}/fig_heldout_check.png", dpi=450, bbox_inches="tight")
-plt.show(); plt.close(fig)
+plt.close(fig)
 
 # ----------------------------------------------------------------------------- C. high-res figures
 print("\n" + "=" * 70)
@@ -167,3 +172,4 @@ try:
 finally:
     matplotlib.figure.Figure.savefig = _orig_savefig
 print(f"Saved fig1_data_support.png, fig2_preliminary_operator.png and fig_heldout_check.png (450 dpi) to {BASE}")
+

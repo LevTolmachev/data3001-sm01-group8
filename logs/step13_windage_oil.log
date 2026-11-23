@@ -1,0 +1,85 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+Moves with wind: 69,020 of 69,020
+
+A. Response to the daily wind (share of wind speed, deflection to the left; 90% interval over drifters)
+                        quantity  share_of_wind_%  p05  p95  deflection_deg_left  defl_p05  defl_p95  moves
+                  drogued (15 m)             0.64 0.60 0.70                48.18     44.59     51.74  34106
+             undrogued (surface)             2.15 2.05 2.26                17.45     16.44     18.43  34914
+difference (undrogued - drogued)             1.62 1.52 1.73                 5.74      3.40      7.76  69020
+
+Matrices built (0.1 min)
+
+B. Forecasting UNDROGUED test drifters (log score gain over the drogued matrix without wind)
+                    set                                       model  horizon_days  cases  drifters  log_score  in_90pct_area_%  median_centre_error_km  gain_vs_15m  gain_p05  gain_p95             verdict
+       test / undrogued                       15 m matrix (no wind)             1   9116        85     -1.171           90.237                  44.660        0.000     0.000     0.000           reference
+       test / undrogued               15 m matrix + wind difference             1   9116        85     -1.165           94.153                  44.868        0.006    -0.002     0.015 no clear difference
+       test / undrogued surface matrix (fitted on surface drifters)             1   9116        85     -1.165           91.926                  44.873        0.007    -0.001     0.014 no clear difference
+       test / undrogued          15 m matrix + actual wind that day             1   9116        85     -1.123           95.042                  44.070        0.048     0.034     0.062              better
+       test / undrogued                       15 m matrix (no wind)             7   8880        83     -2.866           87.523                 115.466        0.000     0.000     0.000           reference
+       test / undrogued               15 m matrix + wind difference             7   8880        83     -2.827           93.818                 113.673        0.039     0.010     0.068              better
+       test / undrogued surface matrix (fitted on surface drifters)             7   8880        83     -2.831           90.563                 113.754        0.036     0.015     0.056              better
+       test / undrogued                       15 m matrix (no wind)            30   8248        79     -3.546           87.161                 251.536        0.000     0.000     0.000           reference
+       test / undrogued               15 m matrix + wind difference            30   8248        79     -3.383           92.568                 241.476        0.163     0.092     0.252              better
+       test / undrogued surface matrix (fitted on surface drifters)            30   8248        79     -3.440           88.955                 247.022        0.107     0.058     0.168              better
+       test / undrogued                       15 m matrix (no wind)            90   7863        72     -2.531           92.268                 361.535        0.000     0.000     0.000           reference
+       test / undrogued               15 m matrix + wind difference            90   7863        72     -2.325           94.175                 344.694        0.207     0.140     0.275              better
+       test / undrogued surface matrix (fitted on surface drifters)            90   7863        72     -2.397           92.471                 339.584        0.135     0.088     0.182              better
+recent_test / undrogued                       15 m matrix (no wind)             1   7857        64     -1.183           89.245                  44.065        0.000     0.000     0.000           reference
+recent_test / undrogued               15 m matrix + wind difference             1   7857        64     -1.172           93.509                  44.007        0.011     0.004     0.018              better
+recent_test / undrogued surface matrix (fitted on surface drifters)             1   7857        64     -1.175           91.689                  44.030        0.008     0.001     0.014              better
+recent_test / undrogued          15 m matrix + actual wind that day             1   7857        64     -1.126           94.833                  43.135        0.057     0.043     0.069              better
+recent_test / undrogued                       15 m matrix (no wind)             7   7791        64     -2.823           88.474                 112.282        0.000     0.000     0.000           reference
+recent_test / undrogued               15 m matrix + wind difference             7   7791        64     -2.811           94.237                 111.160        0.011    -0.011     0.034 no clear difference
+recent_test / undrogued surface matrix (fitted on surface drifters)             7   7791        64     -2.805           89.745                 110.913        0.017    -0.006     0.037 no clear difference
+recent_test / undrogued                       15 m matrix (no wind)            30   7551        63     -3.563           87.233                 248.850        0.000     0.000     0.000           reference
+recent_test / undrogued               15 m matrix + wind difference            30   7551        63     -3.510           90.650                 246.118        0.052     0.004     0.103              better
+recent_test / undrogued surface matrix (fitted on surface drifters)            30   7551        63     -3.518           88.293                 245.147        0.045    -0.003     0.095 no clear difference
+recent_test / undrogued                       15 m matrix (no wind)            90   7273        60     -2.653           93.139                 384.640        0.000     0.000     0.000           reference
+recent_test / undrogued               15 m matrix + wind difference            90   7273        60     -2.545           90.705                 370.277        0.108     0.022     0.201              better
+recent_test / undrogued surface matrix (fitted on surface drifters)            90   7273        60     -2.571           92.094                 361.817        0.082     0.037     0.135              better
+
+Share of the gap between the 15 m and the surface matrix closed by adding the wind difference:
+        set  horizon_days  gap_closed_%   p05   p95
+       test             1          92.7 -21.1 254.1
+       test             7         110.6  46.6 180.5
+       test            30         153.1 117.4 209.5
+       test            90         153.4 125.2 183.8
+recent_test             1         136.9  49.9 447.0
+recent_test             7          66.3 -96.6 219.0
+recent_test            30         117.7  27.3 402.2
+recent_test            90         131.2  39.9 249.8
+
+C. Oil scenario (current at 15 m + share of the wind), release at (-38.0, -54.0)
+release_month               material  day  still_in_R  left_N  left_S  left_E  left_W  mean_lat_in_R  mean_lon_in_R  oil_floating_share
+      January        drifter at 15 m    7       1.000   0.000   0.000   0.000   0.000        -39.598        -52.851                 NaN
+      January        drifter at 15 m   30       1.000   0.000   0.000   0.000   0.000        -40.722        -51.375                 NaN
+      January        drifter at 15 m   90       0.898   0.001   0.011   0.089   0.001        -40.770        -48.226                 NaN
+      January drifter at the surface    7       1.000   0.000   0.000   0.000   0.000        -39.546        -52.327                 NaN
+      January drifter at the surface   30       0.999   0.000   0.000   0.001   0.000        -39.491        -49.310                 NaN
+      January drifter at the surface   90       0.737   0.002   0.003   0.257   0.000        -38.476        -46.062                 NaN
+      January        oil, 2% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.663        -52.698               0.696
+      January        oil, 2% of wind   30       0.998   0.000   0.001   0.001   0.000        -40.717        -50.338               0.647
+      January        oil, 2% of wind   90       0.682   0.002   0.034   0.281   0.000        -40.308        -46.553               0.417
+      January        oil, 3% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.697        -52.616               0.696
+      January        oil, 3% of wind   30       0.996   0.000   0.001   0.003   0.000        -40.761        -49.822               0.645
+      January        oil, 3% of wind   90       0.551   0.003   0.041   0.406   0.000        -39.896        -46.273               0.337
+      January        oil, 4% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.733        -52.529               0.696
+      January        oil, 4% of wind   30       0.991   0.000   0.002   0.007   0.000        -40.828        -49.308               0.642
+      January        oil, 4% of wind   90       0.432   0.003   0.044   0.520   0.000        -39.411        -46.305               0.264
+         July        drifter at 15 m    7       1.000   0.000   0.000   0.000   0.000        -39.598        -52.851                 NaN
+         July        drifter at 15 m   30       1.000   0.000   0.000   0.000   0.000        -40.722        -51.375                 NaN
+         July        drifter at 15 m   90       0.898   0.001   0.011   0.089   0.001        -40.770        -48.226                 NaN
+         July drifter at the surface    7       1.000   0.000   0.000   0.000   0.000        -39.546        -52.327                 NaN
+         July drifter at the surface   30       0.999   0.000   0.000   0.001   0.000        -39.491        -49.310                 NaN
+         July drifter at the surface   90       0.737   0.002   0.003   0.257   0.000        -38.476        -46.062                 NaN
+         July        oil, 2% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.437        -52.338               0.696
+         July        oil, 2% of wind   30       0.996   0.000   0.000   0.004   0.000        -39.993        -49.250               0.645
+         July        oil, 2% of wind   90       0.605   0.004   0.020   0.370   0.000        -39.545        -46.161               0.370
+         July        oil, 3% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.363        -52.079               0.696
+         July        oil, 3% of wind   30       0.986   0.000   0.001   0.013   0.000        -39.777        -48.323               0.639
+         July        oil, 3% of wind   90       0.447   0.006   0.018   0.529   0.000        -38.945        -45.942               0.273
+         July        oil, 4% of wind    7       1.000   0.000   0.000   0.000   0.000        -39.294        -51.821               0.696
+         July        oil, 4% of wind   30       0.966   0.000   0.001   0.032   0.000        -39.629        -47.497               0.626
+         July        oil, 4% of wind   90       0.319   0.008   0.015   0.658   0.000        -38.361        -46.049               0.195
+
+Step 13 done in 0.5 min. Outputs in /tmp/cleantest/data/models/step13

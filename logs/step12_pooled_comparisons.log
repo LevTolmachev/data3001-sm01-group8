@@ -1,0 +1,194 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+Training starts (all drifters) 51,447; validation starts 18,168
+
+1. GRID SIZE (M1 on all training drifters, scored on all validation drifters)
+       grid  cells  usable_%  horizon_days  in_90pct_area_%  gain_vs_square1  gain_p05  gain_p95
+square 0.5°   1600     73.95             7            75.03            -0.04     -0.08     -0.01
+square 0.5°   1600     73.95            30            75.01            -0.17     -0.22     -0.12
+square 0.5°   1600     73.95            90            86.25            -0.05     -0.09     -0.01
+  square 1°    400     89.77             7            89.17             0.00      0.00      0.00
+  square 1°    400     89.77            30            87.58             0.00      0.00      0.00
+  square 1°    400     89.77            90            91.08             0.00      0.00      0.00
+  square 2°    100     94.44             7            94.90            -0.35     -0.38     -0.32
+  square 2°    100     94.44            30            94.60            -0.10     -0.13     -0.06
+  square 2°    100     94.44            90            94.73            -0.05     -0.09     -0.02
+    hex ≈1°    437     86.70             7            89.63             0.02      0.01      0.04
+    hex ≈1°    437     86.70            30            88.28             0.03      0.01      0.04
+    hex ≈1°    437     86.70            90            92.58             0.03      0.02      0.04
+    hex ≈2°    123     93.40             7            95.79            -0.35     -0.38     -0.32
+    hex ≈2°    123     93.40            30            95.12            -0.09     -0.12     -0.05
+    hex ≈2°    123     93.40            90            96.20            -0.03     -0.06     -0.00
+
+1b. TIME STEP and MARKOV CHECK (1° squares)
+  step  horizon_days  log_score  gain_vs_1day  gain_p05  gain_p95  tv_iterated_vs_direct  tv_split_half_reference
+     1             6     -2.721         0.000     0.000     0.000                    NaN                      NaN
+     2             6     -2.707         0.014     0.010     0.019                    NaN                      NaN
+     3             6     -2.712         0.009    -0.002     0.019                    NaN                      NaN
+     6             6     -3.229        -0.508    -0.577    -0.439                    NaN                      NaN
+direct             6     -3.229        -0.508    -0.577    -0.439                  0.209                    0.379
+     1            12     -3.315         0.000     0.000     0.000                    NaN                      NaN
+     2            12     -3.296         0.019     0.015     0.024                    NaN                      NaN
+     3            12     -3.277         0.038     0.031     0.046                    NaN                      NaN
+     6            12     -3.294         0.021     0.003     0.040                    NaN                      NaN
+direct            12     -4.506        -1.191    -1.312    -1.047                  0.301                    0.504
+     1            30     -3.703         0.000     0.000     0.000                    NaN                      NaN
+     2            30     -3.690         0.013     0.007     0.019                    NaN                      NaN
+     3            30     -3.675         0.028     0.018     0.040                    NaN                      NaN
+     6            30     -3.649         0.054     0.037     0.073                    NaN                      NaN
+direct            30     -6.158        -2.455    -2.642    -2.260                  0.409                    0.610
+     1            60     -3.389         0.000     0.000     0.000                    NaN                      NaN
+     2            60     -3.381         0.008     0.004     0.013                    NaN                      NaN
+     3            60     -3.372         0.017     0.008     0.027                    NaN                      NaN
+     6            60     -3.346         0.044     0.026     0.062                    NaN                      NaN
+direct            60     -6.146        -2.756    -3.034    -2.482                  0.434                    0.571
+     1            90     -2.814         0.000     0.000     0.000                    NaN                      NaN
+     2            90     -2.807         0.006     0.002     0.011                    NaN                      NaN
+     3            90     -2.802         0.012     0.004     0.019                    NaN                      NaN
+     6            90     -2.784         0.029     0.013     0.044                    NaN                      NaN
+direct            90     -5.126        -2.313    -2.618    -1.995                  0.401                    0.488
+
+2. MODEL COMPLEXITY (all drifters)
+  M2 (pooled) chosen: sigma 0.5, alpha 0
+  GAM chosen: 14 knots, C 3.0
+  network chosen: freqs 3, hidden (64, 64, 64), L2 0.001
+  chosen: {'m2_sigma': 0.5, 'm2_alpha': 0, 'gam_knots': 14, 'gam_C': 3.0, 'nn_freqs': 3, 'nn_hidden': '(64, 64, 64)', 'nn_l2': 0.001, 'mem_sigma': 0.5, 'mem_beta': 10, 'mem_gam_C': 3.0, 'mem_nn_hidden': '(128, 128)', 'mem_nn_l2': 0.001}
+
+  validation, log score minus pooled M2:
+  validation / all       day   1  M0b displacement             -0.055 [-0.064, -0.048]  worse
+  validation / all       day   1  M1 empirical                 -0.051 [-0.060, -0.043]  worse
+  validation / all       day   1  M5 GAM                       -0.002 [-0.004, -0.001]  worse
+  validation / all       day   1  M6 neural net                -0.001 [-0.003, +0.001]  no clear difference
+  validation / all       day   7  M0b displacement             -0.310 [-0.356, -0.269]  worse
+  validation / all       day   7  M1 empirical                 -0.010 [-0.015, -0.005]  worse
+  validation / all       day   7  M5 GAM                       -0.028 [-0.035, -0.021]  worse
+  validation / all       day   7  M6 neural net                -0.025 [-0.032, -0.018]  worse
+  validation / all       day  30  M0b displacement             -0.466 [-0.562, -0.386]  worse
+  validation / all       day  30  M1 empirical                 +0.001 [-0.005, +0.008]  no clear difference
+  validation / all       day  30  M5 GAM                       -0.056 [-0.075, -0.038]  worse
+  validation / all       day  30  M6 neural net                -0.047 [-0.066, -0.029]  worse
+  validation / all       day  90  M0b displacement             -0.343 [-0.433, -0.245]  worse
+  validation / all       day  90  M1 empirical                 +0.003 [-0.002, +0.009]  no clear difference
+  validation / all       day  90  M5 GAM                       -0.074 [-0.103, -0.049]  worse
+  validation / all       day  90  M6 neural net                -0.046 [-0.085, -0.011]  worse
+  validation / all       day   1  M7 memory, counts            +0.072 [+0.067, +0.076]  better
+  validation / all       day   1  M7 memory, GAM               +0.110 [+0.101, +0.118]  better
+  validation / all       day   1  M7 memory, network           +0.113 [+0.106, +0.121]  better
+  validation / all       day   7  M7 memory, counts            +0.049 [+0.039, +0.059]  better
+  validation / all       day   7  M7 memory, GAM               +0.042 [+0.024, +0.063]  better
+  validation / all       day   7  M7 memory, network           +0.043 [+0.026, +0.062]  better
+  validation / all       day  30  M7 memory, counts            +0.026 [+0.005, +0.048]  better
+  validation / all       day  30  M7 memory, GAM               -0.027 [-0.059, +0.006]  no clear difference
+  validation / all       day  30  M7 memory, network           -0.024 [-0.053, +0.008]  no clear difference
+  validation / all       day  90  M7 memory, counts            +0.012 [-0.016, +0.038]  no clear difference
+  validation / all       day  90  M7 memory, GAM               -0.095 [-0.142, -0.054]  worse
+  validation / all       day  90  M7 memory, network           -0.084 [-0.127, -0.046]  worse
+
+  TEST (refit on training + validation drifters)
+  test / all             day   1  M0b displacement             -0.049 [-0.058, -0.041]  worse
+  test / all             day   1  M1 empirical                 -0.054 [-0.066, -0.045]  worse
+  test / all             day   1  M5 GAM                       -0.000 [-0.003, +0.003]  no clear difference
+  test / all             day   1  M6 neural net                +0.002 [-0.001, +0.005]  no clear difference
+  test / all             day   7  M0b displacement             -0.291 [-0.335, -0.251]  worse
+  test / all             day   7  M1 empirical                 -0.014 [-0.026, -0.004]  worse
+  test / all             day   7  M5 GAM                       -0.017 [-0.025, -0.008]  worse
+  test / all             day   7  M6 neural net                -0.010 [-0.018, -0.003]  worse
+  test / all             day  30  M0b displacement             -0.439 [-0.538, -0.338]  worse
+  test / all             day  30  M1 empirical                 +0.000 [-0.011, +0.012]  no clear difference
+  test / all             day  30  M5 GAM                       -0.034 [-0.054, -0.009]  worse
+  test / all             day  30  M6 neural net                -0.019 [-0.038, +0.005]  no clear difference
+  test / all             day  90  M0b displacement             -0.396 [-0.489, -0.306]  worse
+  test / all             day  90  M1 empirical                 -0.004 [-0.012, +0.005]  no clear difference
+  test / all             day  90  M5 GAM                       -0.036 [-0.068, +0.002]  no clear difference
+  test / all             day  90  M6 neural net                -0.026 [-0.056, +0.009]  no clear difference
+  test / all             day   1  M7 memory, counts            +0.080 [+0.076, +0.084]  better
+  test / all             day   1  M7 memory, GAM               +0.118 [+0.109, +0.126]  better
+  test / all             day   1  M7 memory, network           +0.122 [+0.113, +0.130]  better
+  test / all             day   7  M7 memory, counts            +0.043 [+0.030, +0.055]  better
+  test / all             day   7  M7 memory, GAM               +0.036 [+0.017, +0.056]  better
+  test / all             day   7  M7 memory, network           +0.058 [+0.039, +0.079]  better
+  test / all             day  30  M7 memory, counts            +0.002 [-0.026, +0.030]  no clear difference
+  test / all             day  30  M7 memory, GAM               -0.025 [-0.064, +0.022]  no clear difference
+  test / all             day  30  M7 memory, network           -0.003 [-0.039, +0.039]  no clear difference
+  test / all             day  90  M7 memory, counts            -0.006 [-0.029, +0.019]  no clear difference
+  test / all             day  90  M7 memory, GAM               -0.071 [-0.112, -0.022]  worse
+  test / all             day  90  M7 memory, network           -0.058 [-0.095, -0.016]  worse
+  recent_test / all      day   1  M0b displacement             -0.055 [-0.067, -0.046]  worse
+  recent_test / all      day   1  M1 empirical                 -0.048 [-0.057, -0.040]  worse
+  recent_test / all      day   1  M5 GAM                       -0.001 [-0.005, +0.002]  no clear difference
+  recent_test / all      day   1  M6 neural net                +0.002 [-0.001, +0.005]  no clear difference
+  recent_test / all      day   7  M0b displacement             -0.328 [-0.386, -0.283]  worse
+  recent_test / all      day   7  M1 empirical                 -0.006 [-0.012, -0.001]  worse
+  recent_test / all      day   7  M5 GAM                       -0.025 [-0.034, -0.017]  worse
+  recent_test / all      day   7  M6 neural net                -0.014 [-0.023, -0.005]  worse
+  recent_test / all      day  30  M0b displacement             -0.480 [-0.601, -0.372]  worse
+  recent_test / all      day  30  M1 empirical                 +0.003 [-0.003, +0.010]  no clear difference
+  recent_test / all      day  30  M5 GAM                       -0.053 [-0.071, -0.033]  worse
+  recent_test / all      day  30  M6 neural net                -0.036 [-0.054, -0.016]  worse
+  recent_test / all      day  90  M0b displacement             -0.360 [-0.472, -0.243]  worse
+  recent_test / all      day  90  M1 empirical                 +0.005 [-0.000, +0.010]  no clear difference
+  recent_test / all      day  90  M5 GAM                       -0.049 [-0.084, -0.019]  worse
+  recent_test / all      day  90  M6 neural net                -0.049 [-0.077, -0.021]  worse
+  recent_test / all      day   1  M7 memory, counts            +0.074 [+0.068, +0.081]  better
+  recent_test / all      day   1  M7 memory, GAM               +0.104 [+0.093, +0.115]  better
+  recent_test / all      day   1  M7 memory, network           +0.111 [+0.099, +0.121]  better
+  recent_test / all      day   7  M7 memory, counts            +0.043 [+0.029, +0.058]  better
+  recent_test / all      day   7  M7 memory, GAM               +0.018 [-0.006, +0.042]  no clear difference
+  recent_test / all      day   7  M7 memory, network           +0.039 [+0.016, +0.060]  better
+  recent_test / all      day  30  M7 memory, counts            +0.018 [-0.012, +0.052]  no clear difference
+  recent_test / all      day  30  M7 memory, GAM               -0.025 [-0.066, +0.022]  no clear difference
+  recent_test / all      day  30  M7 memory, network           -0.010 [-0.048, +0.032]  no clear difference
+  recent_test / all      day  90  M7 memory, counts            +0.024 [-0.009, +0.065]  no clear difference
+  recent_test / all      day  90  M7 memory, GAM               -0.075 [-0.118, -0.020]  worse
+  recent_test / all      day  90  M7 memory, network           -0.054 [-0.091, -0.009]  worse
+
+3. DEPTH: pooled M2 vs M2 split by drogue status (test drifters)
+  test / drogued         day   1  M2 own depth only            -0.005 [-0.010, -0.001]  worse
+  test / drogued         day   1  M2 other depth only          -0.042 [-0.054, -0.032]  worse
+  test / drogued         day   1  M4 final (own depth + 0.25 x other) +0.004 [+0.001, +0.007]  better
+  test / drogued         day   7  M2 own depth only            +0.004 [-0.008, +0.016]  no clear difference
+  test / drogued         day   7  M2 other depth only          -0.113 [-0.146, -0.081]  worse
+  test / drogued         day   7  M4 final (own depth + 0.25 x other) +0.007 [-0.001, +0.015]  no clear difference
+  test / drogued         day  30  M2 own depth only            +0.027 [-0.008, +0.057]  no clear difference
+  test / drogued         day  30  M2 other depth only          -0.195 [-0.252, -0.134]  worse
+  test / drogued         day  30  M4 final (own depth + 0.25 x other) +0.026 [+0.004, +0.045]  better
+  test / drogued         day  90  M2 own depth only            -0.010 [-0.056, +0.033]  no clear difference
+  test / drogued         day  90  M2 other depth only          -0.136 [-0.210, -0.057]  worse
+  test / drogued         day  90  M4 final (own depth + 0.25 x other) +0.004 [-0.024, +0.029]  no clear difference
+  test / undrogued       day   1  M2 own depth only            -0.013 [-0.019, -0.008]  worse
+  test / undrogued       day   1  M2 other depth only          -0.022 [-0.029, -0.016]  worse
+  test / undrogued       day   1  M4 final (own depth + 0.25 x other) -0.001 [-0.003, +0.001]  no clear difference
+  test / undrogued       day   7  M2 own depth only            -0.009 [-0.017, +0.001]  no clear difference
+  test / undrogued       day   7  M2 other depth only          -0.048 [-0.062, -0.033]  worse
+  test / undrogued       day   7  M4 final (own depth + 0.25 x other) +0.002 [-0.003, +0.008]  no clear difference
+  test / undrogued       day  30  M2 own depth only            +0.020 [-0.006, +0.049]  no clear difference
+  test / undrogued       day  30  M2 other depth only          -0.093 [-0.134, -0.062]  worse
+  test / undrogued       day  30  M4 final (own depth + 0.25 x other) +0.020 [+0.007, +0.036]  better
+  test / undrogued       day  90  M2 own depth only            +0.044 [+0.021, +0.068]  better
+  test / undrogued       day  90  M2 other depth only          -0.096 [-0.124, -0.067]  worse
+  test / undrogued       day  90  M4 final (own depth + 0.25 x other) +0.032 [+0.018, +0.046]  better
+  recent_test / drogued  day   1  M2 own depth only            -0.007 [-0.012, -0.001]  worse
+  recent_test / drogued  day   1  M2 other depth only          -0.041 [-0.052, -0.029]  worse
+  recent_test / drogued  day   1  M4 final (own depth + 0.25 x other) +0.000 [-0.002, +0.002]  no clear difference
+  recent_test / drogued  day   7  M2 own depth only            -0.004 [-0.022, +0.014]  no clear difference
+  recent_test / drogued  day   7  M2 other depth only          -0.102 [-0.138, -0.065]  worse
+  recent_test / drogued  day   7  M4 final (own depth + 0.25 x other) +0.000 [-0.012, +0.011]  no clear difference
+  recent_test / drogued  day  30  M2 own depth only            +0.003 [-0.051, +0.054]  no clear difference
+  recent_test / drogued  day  30  M2 other depth only          -0.166 [-0.249, -0.082]  worse
+  recent_test / drogued  day  30  M4 final (own depth + 0.25 x other) +0.007 [-0.028, +0.039]  no clear difference
+  recent_test / drogued  day  90  M2 own depth only            -0.004 [-0.080, +0.075]  no clear difference
+  recent_test / drogued  day  90  M2 other depth only          -0.125 [-0.269, -0.007]  worse
+  recent_test / drogued  day  90  M4 final (own depth + 0.25 x other) +0.007 [-0.039, +0.060]  no clear difference
+  recent_test / undrogued day   1  M2 own depth only            -0.016 [-0.025, -0.008]  worse
+  recent_test / undrogued day   1  M2 other depth only          -0.027 [-0.033, -0.020]  worse
+  recent_test / undrogued day   1  M4 final (own depth + 0.25 x other) +0.001 [-0.001, +0.004]  no clear difference
+  recent_test / undrogued day   7  M2 own depth only            -0.026 [-0.055, -0.007]  worse
+  recent_test / undrogued day   7  M2 other depth only          -0.036 [-0.048, -0.024]  worse
+  recent_test / undrogued day   7  M4 final (own depth + 0.25 x other) -0.001 [-0.008, +0.005]  no clear difference
+  recent_test / undrogued day  30  M2 own depth only            -0.024 [-0.057, +0.004]  no clear difference
+  recent_test / undrogued day  30  M2 other depth only          -0.064 [-0.096, -0.034]  worse
+  recent_test / undrogued day  30  M4 final (own depth + 0.25 x other) +0.001 [-0.012, +0.013]  no clear difference
+  recent_test / undrogued day  90  M2 own depth only            +0.008 [-0.022, +0.036]  no clear difference
+  recent_test / undrogued day  90  M2 other depth only          -0.079 [-0.110, -0.055]  worse
+  recent_test / undrogued day  90  M4 final (own depth + 0.25 x other) +0.011 [-0.004, +0.027]  no clear difference
+
+Step 12 done in 10.2 min. Outputs in /tmp/cleantest/data/models/step12

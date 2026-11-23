@@ -1,0 +1,15 @@
+step2_models_M0_M1_M2 rc=0 26s
+step3_core_results rc=0 28s
+step4_drogue_season_gam_nn rc=0 77s
+step5_final_test_and_operator rc=0 354s
+step8_stronger_gam_nn rc=0 196s
+step9_season_operators rc=0 30s
+step10_memory_models rc=0 232s
+step11_model_pictures rc=1 41s
+step11_model_pictures rc=0 38s
+step12_pooled_comparisons rc=0 614s
+step13_windage_oil rc=0 32s
+step14_drifter_age rc=0 4s
+step6_figures rc=0 11s
+step7_build_viewer rc=0 1s
+step15_report_figures rc=0 11s

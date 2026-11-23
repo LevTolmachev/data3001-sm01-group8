@@ -1,0 +1,7 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+release cell 166 displacement classes 25 window 2
+M2 stay 0.63 east 1 cell 0.08 south 1 cell 0.16
+M5 stay 0.58 east 1 cell 0.08 south 1 cell 0.19
+M6 stay 0.59 east 1 cell 0.10 south 1 cell 0.15
+M7_east stay 0.60 east 1 cell 0.24 south 1 cell 0.05
+saved model_pictures.json

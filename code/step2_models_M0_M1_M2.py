@@ -47,19 +47,23 @@ warnings.filterwarnings("ignore", message="All-NaN slice encountered")
 warnings.filterwarnings("ignore", message="Mean of empty slice")
 import numpy as np
 import pandas as pd
+import matplotlib
+if "ipykernel" not in __import__("sys").modules:
+    matplotlib.use("Agg")          # write PNGs without opening windows
 import matplotlib.pyplot as plt
 from matplotlib.colors import LogNorm
 from scipy.ndimage import gaussian_filter
 
-try:                                   # save everything in Google Drive when in Colab
-    from google.colab import drive
-    drive.mount("/content/drive")
-    BASE = "/content/drive/MyDrive/DATA3001/initial_analysis"
-except ImportError:                    # not in Colab
-    BASE = os.environ.get("DATA3001_BASE", ".")
-except Exception as e:
-    print("WARNING: Google Drive did not mount (", e, "). Using temporary storage.")
-    BASE = "/content/DATA3001/initial_analysis"
+# Data folder: DATA3001_BASE if set, otherwise <repo>/data (or Google Drive when run in Colab).
+if os.environ.get("DATA3001_BASE"):
+    BASE = os.environ["DATA3001_BASE"]
+else:
+    try:
+        from google.colab import drive
+        drive.mount("/content/drive")
+        BASE = "/content/drive/MyDrive/DATA3001/initial_analysis"
+    except ImportError:
+        BASE = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data")
 
 # ----------------------------------------------------------------------------- CONFIG
 LAT_MIN, LAT_MAX = -50.0, -30.0
@@ -84,6 +88,8 @@ RUN_TEST = False             # True ONLY once, at the end
 LOG_FLOOR = 1e-6             # probabilities below this count as 1e-6 in the log score
 
 INPUT_FILE = os.path.join(BASE, "gdp_bmc_extract.parquet")
+if not os.path.exists(INPUT_FILE) and os.path.exists(os.path.join(BASE, "gdp_bmc_daily.parquet")):
+    INPUT_FILE = os.path.join(BASE, "gdp_bmc_daily.parquet")      # the small daily file works too
 OUT = os.path.join(BASE, "models")
 os.makedirs(OUT, exist_ok=True)
 SPLIT_FILE = os.path.join(OUT, "splits.csv")

@@ -1,0 +1,31 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+B. Test drifters: seasonal minus all-year M4 (log score, 90% interval)
+  test / drogued         day   1  M4 seasonal                  +0.000 [-0.001, +0.001]  no clear difference
+  test / drogued         day   7  M4 seasonal                  +0.004 [-0.001, +0.007]  no clear difference
+  test / drogued         day  30  M4 seasonal                  +0.011 [+0.002, +0.020]  better
+  test / drogued         day  90  M4 seasonal                  +0.007 [-0.001, +0.016]  no clear difference
+  test / undrogued       day   1  M4 seasonal                  +0.001 [-0.001, +0.002]  no clear difference
+  test / undrogued       day   7  M4 seasonal                  +0.007 [+0.002, +0.012]  better
+  test / undrogued       day  30  M4 seasonal                  +0.025 [+0.011, +0.038]  better
+  test / undrogued       day  90  M4 seasonal                  +0.017 [+0.004, +0.032]  better
+  recent_test / drogued  day   1  M4 seasonal                  -0.000 [-0.002, +0.002]  no clear difference
+  recent_test / drogued  day   7  M4 seasonal                  -0.000 [-0.006, +0.006]  no clear difference
+  recent_test / drogued  day  30  M4 seasonal                  +0.000 [-0.012, +0.013]  no clear difference
+  recent_test / drogued  day  90  M4 seasonal                  -0.006 [-0.019, +0.005]  no clear difference
+  recent_test / undrogued day   1  M4 seasonal                  -0.000 [-0.002, +0.001]  no clear difference
+  recent_test / undrogued day   7  M4 seasonal                  +0.000 [-0.004, +0.004]  no clear difference
+  recent_test / undrogued day  30  M4 seasonal                  +0.016 [+0.005, +0.025]  better
+  recent_test / undrogued day  90  M4 seasonal                  +0.024 [+0.007, +0.039]  better
+
+C. How the answer changes with the month of release (even start, days until half has left R)
+ operator release_month  days_until_half_left  boot_min  boot_max  still_in_R_day30  still_in_R_day90
+  drogued       January                   107       103       118             0.805             0.558
+  drogued         April                   107       104       113             0.805             0.559
+  drogued          July                   105       101       110             0.800             0.550
+  drogued       October                   106       101       115             0.804             0.554
+undrogued       January                    90        88        95             0.777             0.499
+undrogued         April                    87        84        92             0.770             0.486
+undrogued          July                    86        80        92             0.761             0.480
+undrogued       October                    91        88        98             0.771             0.504
+
+Step 9 done in 0.5 min. Outputs in /tmp/cleantest/data/models/step9

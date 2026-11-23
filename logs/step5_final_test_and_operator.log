@@ -1,0 +1,224 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+Fixed settings: M2 sigma 0.5, alpha 2.0; M4 other-type weight 0.25, seasonal pull 100; GAM 5 knots, ridge 10.0; network (32, 32), L2 0.01
+
+A. Refitting every model on training + validation drifters ...
+  drogued moves 34,106 from 398 drifters; undrogued moves 34,914 from 332 drifters
+
+==============================================================================
+B. FINAL HELD-OUT TEST
+==============================================================================
+                    set                  model  horizon_days  cases  drifters  log_score  log_score_p05  log_score_p95  in_50pct_area_%  in_90pct_area_%  in_90pct_area_%_p05  in_90pct_area_%_p95  median_centre_error_km  median_persistence_error_km
+         test / drogued       M0b displacement             1   8627       104      -1.18          -1.23          -1.12            67.88            89.89                89.01                90.81                   44.02                        21.68
+         test / drogued           M1 empirical             1   8627       104      -1.22          -1.29          -1.15            69.21            91.11                90.30                92.01                   43.62                        21.68
+         test / drogued            M2 smoothed             1   8627       104      -1.12          -1.17          -1.06            68.54            92.28                91.45                93.17                   43.47                        21.68
+         test / drogued M4 + other drogue type             1   8627       104      -1.11          -1.16          -1.06            68.51            92.71                91.87                93.57                   43.37                        21.68
+         test / drogued            M4 + season             1   8627       104      -1.12          -1.17          -1.06            68.56            92.49                91.70                93.34                   43.46                        21.68
+         test / drogued                 M5 GAM             1   8627       104      -1.14          -1.19          -1.09            67.88            90.88                90.06                91.69                   43.61                        21.68
+         test / drogued          M6 neural net             1   8627       104      -1.17          -1.22          -1.11            67.88            93.40                92.70                94.15                   43.81                        21.68
+         test / drogued       M0b displacement             7   8233       104      -3.32          -3.43          -3.21            47.66            80.78                78.51                82.91                  125.07                       117.66
+         test / drogued           M1 empirical             7   8233       104      -2.96          -3.05          -2.87            47.73            87.00                85.30                88.85                  115.14                       117.66
+         test / drogued            M2 smoothed             7   8233       104      -2.94          -3.02          -2.84            51.24            87.71                86.09                89.38                  114.80                       117.66
+         test / drogued M4 + other drogue type             7   8233       104      -2.93          -3.02          -2.84            51.99            88.10                86.40                89.83                  115.55                       117.66
+         test / drogued            M4 + season             7   8233       104      -2.93          -3.02          -2.84            51.31            87.82                86.23                89.45                  114.11                       117.66
+         test / drogued                 M5 GAM             7   8233       104      -3.10          -3.20          -3.00            46.42            82.42                80.29                84.53                  117.70                       117.66
+         test / drogued          M6 neural net             7   8233       104      -3.20          -3.30          -3.10            46.74            83.94                82.03                85.72                  122.92                       117.66
+         test / drogued       M0b displacement            30   7417        99      -4.61          -4.82          -4.41            36.75            74.22                70.35                78.05                  274.72                       284.90
+         test / drogued           M1 empirical            30   7417        99      -4.03          -4.19          -3.85            47.09            84.41                80.66                87.80                  257.79                       284.90
+         test / drogued            M2 smoothed            30   7417        99      -4.03          -4.18          -3.84            48.29            84.67                81.17                88.04                  258.69                       284.90
+         test / drogued M4 + other drogue type            30   7417        99      -4.03          -4.18          -3.84            48.12            85.22                81.63                88.62                  261.33                       284.90
+         test / drogued            M4 + season            30   7417        99      -4.01          -4.18          -3.83            48.39            84.85                81.36                88.02                  256.57                       284.90
+         test / drogued                 M5 GAM            30   7417        99      -4.23          -4.40          -4.03            43.59            79.18                75.22                82.69                  262.94                       284.90
+         test / drogued          M6 neural net            30   7417        99      -4.39          -4.57          -4.18            42.54            77.89                74.63                81.34                  272.73                       284.90
+         test / drogued       M0b displacement            90   6447        92      -4.07          -4.45          -3.66            38.64            81.74                78.14                85.21                  425.49                       522.46
+         test / drogued           M1 empirical            90   6447        92      -3.55          -3.91          -3.14            55.27            89.76                86.71                92.64                  421.76                       522.46
+         test / drogued            M2 smoothed            90   6447        92      -3.53          -3.88          -3.14            57.47            90.88                88.16                93.52                  418.59                       522.46
+         test / drogued M4 + other drogue type            90   6447        92      -3.52          -3.87          -3.11            57.20            90.29                87.51                92.93                  425.84                       522.46
+         test / drogued            M4 + season            90   6447        92      -3.53          -3.88          -3.13            56.23            90.88                88.39                93.49                  416.84                       522.46
+         test / drogued                 M5 GAM            90   6447        92      -3.64          -3.96          -3.27            59.28            89.25                86.38                92.18                  421.88                       522.46
+         test / drogued          M6 neural net            90   6447        92      -3.82          -4.22          -3.39            45.31            84.07                80.41                87.65                  421.05                       522.46
+       test / undrogued      M2 undrogued only             1   9116        85      -1.16          -1.21          -1.12            67.95            91.93                91.36                92.46                   44.87                        23.65
+       test / undrogued        M2 drogued only             1   9116        85      -1.17          -1.22          -1.12            67.64            90.24                89.43                91.05                   44.66                        23.65
+       test / undrogued M4 + other drogue type             1   9116        85      -1.16          -1.20          -1.11            67.75            92.11                91.57                92.66                   44.81                        23.65
+       test / undrogued      M2 undrogued only             7   8880        83      -2.83          -2.90          -2.74            52.56            90.56                89.20                92.05                  113.75                       113.16
+       test / undrogued        M2 drogued only             7   8880        83      -2.87          -2.95          -2.77            48.63            87.52                85.91                89.43                  115.47                       113.16
+       test / undrogued M4 + other drogue type             7   8880        83      -2.82          -2.90          -2.73            52.78            90.66                89.42                92.09                  113.55                       113.16
+       test / undrogued      M2 undrogued only            30   8248        79      -3.44          -3.62          -3.21            56.38            88.95                86.71                91.19                  247.02                       288.71
+       test / undrogued        M2 drogued only            30   8248        79      -3.55          -3.73          -3.30            55.42            87.16                84.30                89.95                  251.54                       288.71
+       test / undrogued M4 + other drogue type            30   8248        79      -3.44          -3.62          -3.21            57.24            89.08                87.06                91.36                  247.97                       288.71
+       test / undrogued      M2 undrogued only            90   7863        72      -2.40          -2.78          -2.00            70.79            92.47                89.53                95.62                  339.58                       498.46
+       test / undrogued        M2 drogued only            90   7863        72      -2.53          -2.89          -2.12            72.56            92.27                89.41                95.27                  361.54                       498.46
+       test / undrogued M4 + other drogue type            90   7863        72      -2.41          -2.78          -2.01            71.45            92.92                89.99                95.88                  342.46                       498.46
+  recent_test / drogued       M0b displacement             1   3958        71      -1.24          -1.30          -1.18            64.73            90.15                88.86                91.36                   43.80                        24.84
+  recent_test / drogued           M1 empirical             1   3958        71      -1.24          -1.31          -1.17            67.33            91.33                90.32                92.35                   42.81                        24.84
+  recent_test / drogued            M2 smoothed             1   3958        71      -1.16          -1.21          -1.10            66.02            92.37                91.51                93.29                   42.77                        24.84
+  recent_test / drogued M4 + other drogue type             1   3958        71      -1.15          -1.21          -1.10            65.99            92.90                92.08                93.73                   42.75                        24.84
+  recent_test / drogued            M4 + season             1   3958        71      -1.16          -1.21          -1.10            65.92            92.82                91.93                93.70                   42.79                        24.84
+  recent_test / drogued                 M5 GAM             1   3958        71      -1.19          -1.25          -1.13            64.73            91.01                89.96                91.98                   43.29                        24.84
+  recent_test / drogued          M6 neural net             1   3958        71      -1.23          -1.29          -1.16            64.73            93.61                92.75                94.42                   43.68                        24.84
+  recent_test / drogued       M0b displacement             7   3708        68      -3.44          -3.64          -3.25            44.88            77.40                72.87                81.08                  128.17                       128.91
+  recent_test / drogued           M1 empirical             7   3708        68      -2.96          -3.11          -2.80            49.43            87.49                84.29                90.45                  121.33                       128.91
+  recent_test / drogued            M2 smoothed             7   3708        68      -2.95          -3.11          -2.80            50.73            88.13                85.00                90.98                  121.07                       128.91
+  recent_test / drogued M4 + other drogue type             7   3708        68      -2.95          -3.10          -2.79            51.08            88.54                85.61                91.36                  121.44                       128.91
+  recent_test / drogued            M4 + season             7   3708        68      -2.95          -3.11          -2.79            51.08            87.92                84.74                90.74                  121.06                       128.91
+  recent_test / drogued                 M5 GAM             7   3708        68      -3.14          -3.31          -2.97            46.44            82.25                78.48                86.10                  124.38                       128.91
+  recent_test / drogued          M6 neural net             7   3708        68      -3.29          -3.47          -3.11            47.11            81.88                77.87                85.32                  129.11                       128.91
+  recent_test / drogued       M0b displacement            30   3287        68      -4.58          -4.94          -4.22            41.41            75.17                69.87                80.65                  271.00                       289.85
+  recent_test / drogued           M1 empirical            30   3287        68      -3.80          -4.06          -3.52            53.70            85.98                81.55                90.08                  243.34                       289.85
+  recent_test / drogued            M2 smoothed            30   3287        68      -3.82          -4.09          -3.53            55.80            85.94                81.75                90.24                  246.51                       289.85
+  recent_test / drogued M4 + other drogue type            30   3287        68      -3.81          -4.08          -3.53            56.77            86.37                82.12                90.55                  247.49                       289.85
+  recent_test / drogued            M4 + season            30   3287        68      -3.82          -4.09          -3.54            56.25            85.98                81.77                90.30                  247.46                       289.85
+  recent_test / drogued                 M5 GAM            30   3287        68      -4.01          -4.31          -3.70            53.09            82.39                77.80                87.03                  252.09                       289.85
+  recent_test / drogued          M6 neural net            30   3287        68      -4.28          -4.60          -3.95            45.91            79.40                74.68                84.09                  276.54                       289.85
+  recent_test / drogued       M0b displacement            90   2419        67      -3.23          -3.92          -2.52            53.37            89.38                83.62                94.19                  380.35                       528.04
+  recent_test / drogued           M1 empirical            90   2419        67      -2.75          -3.46          -2.05            69.99            92.39                86.30                97.04                  362.89                       528.04
+  recent_test / drogued            M2 smoothed            90   2419        67      -2.75          -3.45          -2.08            70.36            93.63                88.04                98.02                  373.15                       528.04
+  recent_test / drogued M4 + other drogue type            90   2419        67      -2.74          -3.45          -2.06            66.93            94.30                89.65                97.89                  378.55                       528.04
+  recent_test / drogued            M4 + season            90   2419        67      -2.76          -3.46          -2.09            70.65            93.92                88.69                98.19                  372.67                       528.04
+  recent_test / drogued                 M5 GAM            90   2419        67      -2.87          -3.52          -2.21            70.19            94.50                89.44                98.21                  400.65                       528.04
+  recent_test / drogued          M6 neural net            90   2419        67      -3.07          -3.81          -2.30            56.35            85.28                78.32                92.09                  392.98                       528.04
+recent_test / undrogued      M2 undrogued only             1   7857        64      -1.18          -1.23          -1.13            67.96            91.69                91.08                92.38                   44.03                        24.03
+recent_test / undrogued        M2 drogued only             1   7857        64      -1.18          -1.23          -1.13            67.21            89.25                88.52                90.02                   44.06                        24.03
+recent_test / undrogued M4 + other drogue type             1   7857        64      -1.17          -1.22          -1.12            67.61            91.52                90.93                92.22                   44.04                        24.03
+recent_test / undrogued      M2 undrogued only             7   7791        64      -2.81          -2.91          -2.70            50.88            89.74                88.00                91.34                  110.91                       110.57
+recent_test / undrogued        M2 drogued only             7   7791        64      -2.82          -2.93          -2.71            48.03            88.47                86.94                89.93                  112.28                       110.57
+recent_test / undrogued M4 + other drogue type             7   7791        64      -2.79          -2.90          -2.69            51.29            90.08                88.46                91.58                  110.66                       110.57
+recent_test / undrogued      M2 undrogued only            30   7551        63      -3.52          -3.73          -3.31            51.19            88.29                85.60                90.84                  245.15                       264.62
+recent_test / undrogued        M2 drogued only            30   7551        63      -3.56          -3.77          -3.36            52.92            87.23                84.19                90.00                  248.85                       264.62
+recent_test / undrogued M4 + other drogue type            30   7551        63      -3.50          -3.71          -3.30            51.65            88.99                86.24                91.61                  244.59                       264.62
+recent_test / undrogued      M2 undrogued only            90   7273        60      -2.57          -2.98          -2.17            65.71            92.09                89.38                94.84                  361.82                       501.47
+recent_test / undrogued        M2 drogued only            90   7273        60      -2.65          -3.02          -2.28            69.35            93.14                90.47                95.95                  384.64                       501.47
+recent_test / undrogued M4 + other drogue type            90   7273        60      -2.57          -2.96          -2.17            67.10            93.15                90.59                95.72                  366.57                       501.47
+
+Is the extra complexity worth it? Paired gain in log score over the reference (90% interval):
+  test / drogued         day   1  M0b displacement             -0.065 [-0.077, -0.053]  worse
+  test / drogued         day   1  M1 empirical                 -0.106 [-0.131, -0.084]  worse
+  test / drogued         day   1  M4 + other drogue type       +0.003 [+0.002, +0.005]  better
+  test / drogued         day   1  M4 + season                  -0.000 [-0.001, +0.001]  no clear difference
+  test / drogued         day   1  M5 GAM                       -0.030 [-0.040, -0.021]  worse
+  test / drogued         day   1  M6 neural net                -0.052 [-0.064, -0.041]  worse
+  test / drogued         day   7  M0b displacement             -0.382 [-0.445, -0.318]  worse
+  test / drogued         day   7  M1 empirical                 -0.027 [-0.041, -0.014]  worse
+  test / drogued         day   7  M4 + other drogue type       +0.003 [-0.001, +0.008]  no clear difference
+  test / drogued         day   7  M4 + season                  +0.003 [-0.001, +0.007]  no clear difference
+  test / drogued         day   7  M5 GAM                       -0.165 [-0.213, -0.120]  worse
+  test / drogued         day   7  M6 neural net                -0.264 [-0.317, -0.205]  worse
+  test / drogued         day  30  M0b displacement             -0.587 [-0.753, -0.447]  worse
+  test / drogued         day  30  M1 empirical                 -0.006 [-0.022, +0.009]  no clear difference
+  test / drogued         day  30  M4 + other drogue type       -0.001 [-0.013, +0.014]  no clear difference
+  test / drogued         day  30  M4 + season                  +0.010 [+0.001, +0.019]  better
+  test / drogued         day  30  M5 GAM                       -0.204 [-0.304, -0.116]  worse
+  test / drogued         day  30  M6 neural net                -0.361 [-0.474, -0.256]  worse
+  test / drogued         day  90  M0b displacement             -0.541 [-0.701, -0.398]  worse
+  test / drogued         day  90  M1 empirical                 -0.015 [-0.030, -0.000]  worse
+  test / drogued         day  90  M4 + other drogue type       +0.015 [-0.002, +0.034]  no clear difference
+  test / drogued         day  90  M4 + season                  +0.006 [-0.002, +0.015]  no clear difference
+  test / drogued         day  90  M5 GAM                       -0.106 [-0.190, -0.040]  worse
+  test / drogued         day  90  M6 neural net                -0.288 [-0.383, -0.186]  worse
+  test / undrogued       day   1  M2 drogued only              -0.007 [-0.014, +0.001]  no clear difference
+  test / undrogued       day   1  M4 + other drogue type       +0.007 [+0.005, +0.009]  better
+  test / undrogued       day   7  M2 drogued only              -0.036 [-0.056, -0.015]  worse
+  test / undrogued       day   7  M4 + other drogue type       +0.008 [+0.004, +0.012]  better
+  test / undrogued       day  30  M2 drogued only              -0.107 [-0.168, -0.058]  worse
+  test / undrogued       day  30  M4 + other drogue type       -0.002 [-0.014, +0.009]  no clear difference
+  test / undrogued       day  90  M2 drogued only              -0.135 [-0.182, -0.088]  worse
+  test / undrogued       day  90  M4 + other drogue type       -0.014 [-0.024, -0.004]  worse
+  recent_test / drogued  day   1  M0b displacement             -0.083 [-0.103, -0.062]  worse
+  recent_test / drogued  day   1  M1 empirical                 -0.083 [-0.108, -0.058]  worse
+  recent_test / drogued  day   1  M4 + other drogue type       +0.004 [+0.002, +0.006]  better
+  recent_test / drogued  day   1  M4 + season                  +0.000 [-0.002, +0.002]  no clear difference
+  recent_test / drogued  day   1  M5 GAM                       -0.037 [-0.049, -0.026]  worse
+  recent_test / drogued  day   1  M6 neural net                -0.069 [-0.086, -0.052]  worse
+  recent_test / drogued  day   7  M0b displacement             -0.483 [-0.599, -0.389]  worse
+  recent_test / drogued  day   7  M1 empirical                 -0.001 [-0.018, +0.017]  no clear difference
+  recent_test / drogued  day   7  M4 + other drogue type       +0.006 [-0.000, +0.014]  no clear difference
+  recent_test / drogued  day   7  M4 + season                  +0.000 [-0.005, +0.007]  no clear difference
+  recent_test / drogued  day   7  M5 GAM                       -0.190 [-0.246, -0.142]  worse
+  recent_test / drogued  day   7  M6 neural net                -0.335 [-0.418, -0.259]  worse
+  recent_test / drogued  day  30  M0b displacement             -0.758 [-0.992, -0.530]  worse
+  recent_test / drogued  day  30  M1 empirical                 +0.017 [-0.006, +0.036]  no clear difference
+  recent_test / drogued  day  30  M4 + other drogue type       +0.008 [-0.011, +0.029]  no clear difference
+  recent_test / drogued  day  30  M4 + season                  +0.000 [-0.011, +0.012]  no clear difference
+  recent_test / drogued  day  30  M5 GAM                       -0.191 [-0.273, -0.110]  worse
+  recent_test / drogued  day  30  M6 neural net                -0.463 [-0.579, -0.344]  worse
+  recent_test / drogued  day  90  M0b displacement             -0.472 [-0.716, -0.262]  worse
+  recent_test / drogued  day  90  M1 empirical                 +0.008 [-0.016, +0.037]  no clear difference
+  recent_test / drogued  day  90  M4 + other drogue type       +0.014 [-0.016, +0.043]  no clear difference
+  recent_test / drogued  day  90  M4 + season                  -0.007 [-0.018, +0.004]  no clear difference
+  recent_test / drogued  day  90  M5 GAM                       -0.116 [-0.220, -0.004]  worse
+  recent_test / drogued  day  90  M6 neural net                -0.319 [-0.476, -0.177]  worse
+  recent_test / undrogued day   1  M2 drogued only              -0.008 [-0.014, -0.001]  worse
+  recent_test / undrogued day   1  M4 + other drogue type       +0.008 [+0.005, +0.011]  better
+  recent_test / undrogued day   7  M2 drogued only              -0.017 [-0.037, +0.006]  no clear difference
+  recent_test / undrogued day   7  M4 + other drogue type       +0.013 [+0.006, +0.022]  better
+  recent_test / undrogued day  30  M2 drogued only              -0.045 [-0.095, +0.003]  no clear difference
+  recent_test / undrogued day  30  M4 + other drogue type       +0.014 [+0.003, +0.028]  better
+  recent_test / undrogued day  90  M2 drogued only              -0.082 [-0.135, -0.037]  worse
+  recent_test / undrogued day  90  M4 + other drogue type       +0.004 [-0.009, +0.021]  no clear difference
+
+Fate (time in R, exit edge):
+                    set                  model  fate_starts  seen_to_exit  observed_up_to_day  still_in_R_abs_error  pred_still_in_R_day_30  obs_still_in_R_day_30  exit_edge_brier  exit_edge_accuracy  pred_share_left_N  pred_share_left_S  pred_share_left_E  pred_share_left_W  obs_share_left_N  obs_share_left_S  obs_share_left_E  obs_share_left_W
+         test / drogued       M0b displacement         1853          1145                 310                 0.068                   0.739                  0.832            0.364               0.737              0.074              0.255              0.641              0.031             0.050             0.039             0.899             0.012
+         test / drogued           M1 empirical         1853          1145                 310                 0.025                   0.819                  0.832            0.139               0.912              0.059              0.073              0.860              0.008             0.050             0.039             0.899             0.012
+         test / drogued            M2 smoothed         1853          1145                 310                 0.026                   0.813                  0.832            0.141               0.916              0.058              0.088              0.841              0.012             0.050             0.039             0.899             0.012
+         test / drogued M4 + other drogue type         1853          1145                 310                 0.030                   0.801                  0.832            0.138               0.913              0.056              0.086              0.846              0.011             0.050             0.039             0.899             0.012
+         test / drogued                 M5 GAM         1853          1145                 310                 0.087                   0.837                  0.832            0.135               0.911              0.028              0.078              0.881              0.013             0.050             0.039             0.899             0.012
+         test / drogued          M6 neural net         1853          1145                 310                 0.093                   0.742                  0.832            0.261               0.809              0.062              0.167              0.719              0.052             0.050             0.039             0.899             0.012
+       test / undrogued      M2 undrogued only         1912          1601                 365                 0.041                   0.716                  0.691            0.173               0.881              0.131              0.018              0.851              0.000             0.147             0.010             0.843             0.000
+       test / undrogued        M2 drogued only         1912          1601                 365                 0.108                   0.781                  0.691            0.173               0.886              0.145              0.023              0.831              0.001             0.147             0.010             0.843             0.000
+       test / undrogued M4 + other drogue type         1912          1601                 365                 0.051                   0.726                  0.691            0.173               0.886              0.132              0.019              0.849              0.001             0.147             0.010             0.843             0.000
+  recent_test / drogued       M0b displacement          870           469                 239                 0.026                   0.731                  0.748            0.353               0.744              0.041              0.299              0.636              0.024             0.006             0.045             0.940             0.009
+  recent_test / drogued           M1 empirical          870           469                 239                 0.019                   0.785                  0.748            0.092               0.945              0.029              0.076              0.890              0.006             0.006             0.045             0.940             0.009
+  recent_test / drogued            M2 smoothed          870           469                 239                 0.017                   0.779                  0.748            0.094               0.949              0.028              0.094              0.869              0.009             0.006             0.045             0.940             0.009
+  recent_test / drogued M4 + other drogue type          870           469                 239                 0.019                   0.768                  0.748            0.093               0.949              0.027              0.093              0.872              0.008             0.006             0.045             0.940             0.009
+  recent_test / drogued                 M5 GAM          870           469                 239                 0.073                   0.798                  0.748            0.082               0.951              0.012              0.088              0.890              0.009             0.006             0.045             0.940             0.009
+  recent_test / drogued          M6 neural net          870           469                 239                 0.086                   0.718                  0.748            0.226               0.806              0.034              0.191              0.736              0.040             0.006             0.045             0.940             0.009
+recent_test / undrogued      M2 undrogued only         1633          1420                 365                 0.020                   0.702                  0.712            0.181               0.880              0.140              0.028              0.831              0.001             0.132             0.011             0.856             0.000
+recent_test / undrogued        M2 drogued only         1633          1420                 365                 0.078                   0.769                  0.712            0.182               0.876              0.154              0.034              0.811              0.001             0.132             0.011             0.856             0.000
+recent_test / undrogued M4 + other drogue type         1633          1420                 365                 0.026                   0.714                  0.712            0.180               0.872              0.141              0.029              0.829              0.001             0.132             0.011             0.856             0.000
+
+==============================================================================
+C. FINAL OPERATORS (M4, training + validation drifters) WITH BOOTSTRAP
+==============================================================================
+Fitted on 571 drifters, 69,020 daily moves. Supported cells: 328 of 400 (354 ever visited).
+  drogued   relative density day 30: 87 supported cells confidently gather, 78 confidently lose, 163 not distinguishable from 1
+  drogued   relative density day 90: 81 supported cells confidently gather, 94 confidently lose, 153 not distinguishable from 1
+  drogued   most likely exit edge (supported cells): N 9, S 0, E 319, W 0
+  undrogued relative density day 30: 92 supported cells confidently gather, 91 confidently lose, 145 not distinguishable from 1
+  undrogued relative density day 90: 93 supported cells confidently gather, 133 confidently lose, 102 not distinguishable from 1
+  undrogued most likely exit edge (supported cells): N 8, S 1, E 319, W 0
+
+RQ1 headline numbers (90% bootstrap interval):
+  drogued   day   7 still in R  94% [94%-94%]
+  drogued   day   7 left via E  4% [4%-5%]
+  drogued   day  30 still in R  80% [79%-81%]
+  drogued   day  30 left via E  15% [14%-16%]
+  drogued   day  90 still in R  56% [53%-58%]
+  drogued   day  90 left via E  37% [35%-39%]
+  drogued   day 365 still in R  6% [4%-8%]
+  drogued   day 365 left via E  81% [79%-84%]
+  drogued   days until half of an even start has left R: 106 [98-114]
+  undrogued day   7 still in R  92% [92%-93%]
+  undrogued day   7 left via E  5% [5%-6%]
+  undrogued day  30 still in R  77% [76%-78%]
+  undrogued day  30 left via E  18% [17%-19%]
+  undrogued day  90 still in R  49% [47%-52%]
+  undrogued day  90 left via E  42% [40%-45%]
+  undrogued day 365 still in R  3% [2%-5%]
+  undrogued day 365 left via E  85% [83%-86%]
+  undrogued days until half of an even start has left R: 89 [82-95]
+
+Release points, still in R (90% interval):
+  drogued   Confluence 38°S 54°W         day  90: 88% [84%-90%]
+  drogued   Brazil Current 33°S 50°W     day  90: 90% [87%-92%]
+  drogued   Malvinas Current 44°S 58°W   day  90: 89% [85%-92%]
+  drogued   Confluence 38°S 54°W         day 365: 9% [6%-12%]
+  drogued   Brazil Current 33°S 50°W     day 365: 13% [9%-17%]
+  drogued   Malvinas Current 44°S 58°W   day 365: 9% [6%-12%]
+  undrogued Confluence 38°S 54°W         day  90: 78% [72%-82%]
+  undrogued Brazil Current 33°S 50°W     day  90: 89% [86%-90%]
+  undrogued Malvinas Current 44°S 58°W   day  90: 81% [77%-84%]
+  undrogued Confluence 38°S 54°W         day 365: 5% [3%-8%]
+  undrogued Brazil Current 33°S 50°W     day 365: 9% [6%-13%]
+  undrogued Malvinas Current 44°S 58°W   day 365: 4% [2%-5%]
+
+Step 5 done in 5.9 min. Outputs in /tmp/cleantest/data/models/step5

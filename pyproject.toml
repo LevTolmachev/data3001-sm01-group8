@@ -1,0 +1,24 @@
+[project]
+name = "bmc-drift"
+version = "1.0.0"
+description = "DATA3001 S01-G8: predicting surface transport in the Brazil-Malvinas Confluence from Global Drifter Program data"
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "numpy>=2.0,<2.4",
+    "pandas>=2.2,<3",
+    "pyarrow>=16",
+    "scipy>=1.13",
+    "matplotlib>=3.9",
+    "scikit-learn>=1.5,<1.8",
+    "shapely>=2.0",
+    "xarray>=2024.6",
+    "zarr>=2.18,<3",
+    "fsspec>=2024.6",
+    "aiohttp>=3.9",
+    "requests>=2.32",
+    "netCDF4>=1.7",
+]
+
+[tool.uv]
+package = false

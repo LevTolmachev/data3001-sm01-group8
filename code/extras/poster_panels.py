@@ -1,3 +1,8 @@
+# Poster (Week 5): separate high-resolution panels. Historical; not needed for the report.
+import os, sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from step1_extract import *          # noqa: F401,F403  (CONFIG, helpers, figures)
+data = load_extract()
 """
 DATA3001 Group S01-G8 - poster panels as separate high-resolution images
 =========================================================================
@@ -23,7 +28,6 @@ DPI = 450
 
 def save(fig, name):
     fig.savefig(os.path.join(OUT, name), dpi=DPI, bbox_inches="tight")
-    plt.show()
     plt.close(fig)
     print("saved", name)
 
@@ -97,3 +101,4 @@ fig.colorbar(im, ax=ax, orientation="horizontal", shrink=0.85, pad=0.02, label="
 save(fig, "panel_relative_density.png")
 
 print("\nDone. Download the four PNGs from", OUT)
+

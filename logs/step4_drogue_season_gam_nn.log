@@ -1,0 +1,216 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+M2 settings from step 2: sigma = 0.5, alpha = 2.0
+
+==============================================================================
+RQ4a  DROGUE STATUS
+==============================================================================
+  drogued  : 25,262 training moves from 298 drifters; median daily displacement 21.8 km
+  undrogued: 25,663 training moves from 244 drifters; median daily displacement 23.5 km
+  all      : 50,925 training moves from 428 drifters; median daily displacement 22.7 km
+             set                      model  horizon_days  cases  drifters  log_score  in_90pct_area_%  median_centre_error_km
+  drogued starts       M2 fitted on drogued             1   8844       100      -1.11            91.88                   43.07
+  drogued starts     M2 fitted on undrogued             1   8844       100      -1.13            92.30                   43.47
+  drogued starts           M2 fitted on all             1   8844       100      -1.10            92.89                   43.02
+  drogued starts M4 own type + 0.25 x other             1   8844       100      -1.11            92.74                   42.93
+  drogued starts  M4 own type + 0.5 x other             1   8844       100      -1.10            92.82                   42.97
+  drogued starts       M2 fitted on drogued             7   8653        98      -2.91            87.80                  115.48
+  drogued starts     M2 fitted on undrogued             7   8653        98      -2.97            88.04                  118.81
+  drogued starts           M2 fitted on all             7   8653        98      -2.89            89.19                  115.82
+  drogued starts M4 own type + 0.25 x other             7   8653        98      -2.89            88.56                  115.60
+  drogued starts  M4 own type + 0.5 x other             7   8653        98      -2.89            89.14                  115.46
+  drogued starts       M2 fitted on drogued            30   8087        96      -3.81            86.46                  263.00
+  drogued starts     M2 fitted on undrogued            30   8087        96      -3.90            83.16                  274.85
+  drogued starts           M2 fitted on all            30   8087        96      -3.79            86.93                  262.77
+  drogued starts M4 own type + 0.25 x other            30   8087        96      -3.79            87.23                  262.94
+  drogued starts  M4 own type + 0.5 x other            30   8087        96      -3.79            87.19                  262.01
+  drogued starts       M2 fitted on drogued            90   7141        90      -3.09            90.20                  455.69
+  drogued starts     M2 fitted on undrogued            90   7141        90      -3.16            83.36                  449.72
+  drogued starts           M2 fitted on all            90   7141        90      -3.07            88.85                  456.48
+  drogued starts M4 own type + 0.25 x other            90   7141        90      -3.07            90.00                  455.57
+  drogued starts  M4 own type + 0.5 x other            90   7141        90      -3.06            89.43                  454.99
+undrogued starts       M2 fitted on drogued             1   9251        88      -1.16            90.10                   44.47
+undrogued starts     M2 fitted on undrogued             1   9251        88      -1.14            91.33                   44.45
+undrogued starts           M2 fitted on all             1   9251        88      -1.14            91.60                   44.49
+undrogued starts M4 own type + 0.25 x other             1   9251        88      -1.14            91.62                   44.42
+undrogued starts  M4 own type + 0.5 x other             1   9251        88      -1.14            91.75                   44.38
+undrogued starts       M2 fitted on drogued             7   9056        88      -2.88            87.00                  113.92
+undrogued starts     M2 fitted on undrogued             7   9056        88      -2.82            89.52                  112.21
+undrogued starts           M2 fitted on all             7   9056        88      -2.82            89.27                  112.22
+undrogued starts M4 own type + 0.25 x other             7   9056        88      -2.81            89.81                  112.04
+undrogued starts  M4 own type + 0.5 x other             7   9056        88      -2.81            89.71                  112.05
+undrogued starts       M2 fitted on drogued            30   8405        86      -3.71            85.27                  250.01
+undrogued starts     M2 fitted on undrogued            30   8405        86      -3.61            86.86                  251.02
+undrogued starts           M2 fitted on all            30   8405        86      -3.62            87.73                  251.52
+undrogued starts M4 own type + 0.25 x other            30   8405        86      -3.61            87.46                  251.27
+undrogued starts  M4 own type + 0.5 x other            30   8405        86      -3.61            87.60                  251.42
+undrogued starts       M2 fitted on drogued            90   7466        78      -2.65            93.32                  348.29
+undrogued starts     M2 fitted on undrogued            90   7466        78      -2.54            92.23                  334.58
+undrogued starts           M2 fitted on all            90   7466        78      -2.58            93.10                  337.29
+undrogued starts M4 own type + 0.25 x other            90   7466        78      -2.56            92.67                  332.58
+undrogued starts  M4 own type + 0.5 x other            90   7466        78      -2.57            92.87                  334.04
+
+Gain in log score over the pooled operator (positive = better, 90% interval):
+  drogued starts         day   1  M2 fitted on drogued         -0.010 [-0.014, -0.007]  worse
+  drogued starts         day   1  M2 fitted on undrogued       -0.028 [-0.035, -0.022]  worse
+  drogued starts         day   1  M4 own type + 0.25 x other   -0.001 [-0.003, +0.000]  no clear difference
+  drogued starts         day   1  M4 own type + 0.5 x other    +0.000 [-0.001, +0.001]  no clear difference
+  drogued starts         day   7  M2 fitted on drogued         -0.018 [-0.029, -0.006]  worse
+  drogued starts         day   7  M2 fitted on undrogued       -0.080 [-0.103, -0.060]  worse
+  drogued starts         day   7  M4 own type + 0.25 x other   +0.000 [-0.006, +0.007]  no clear difference
+  drogued starts         day   7  M4 own type + 0.5 x other    +0.003 [-0.001, +0.006]  no clear difference
+  drogued starts         day  30  M2 fitted on drogued         -0.022 [-0.054, +0.009]  no clear difference
+  drogued starts         day  30  M2 fitted on undrogued       -0.114 [-0.168, -0.060]  worse
+  drogued starts         day  30  M4 own type + 0.25 x other   +0.002 [-0.017, +0.020]  no clear difference
+  drogued starts         day  30  M4 own type + 0.5 x other    +0.005 [-0.006, +0.015]  no clear difference
+  drogued starts         day  90  M2 fitted on drogued         -0.022 [-0.069, +0.016]  no clear difference
+  drogued starts         day  90  M2 fitted on undrogued       -0.090 [-0.181, -0.007]  worse
+  drogued starts         day  90  M4 own type + 0.25 x other   -0.001 [-0.029, +0.022]  no clear difference
+  drogued starts         day  90  M4 own type + 0.5 x other    +0.003 [-0.013, +0.017]  no clear difference
+  undrogued starts       day   1  M2 fitted on drogued         -0.024 [-0.028, -0.020]  worse
+  undrogued starts       day   1  M2 fitted on undrogued       -0.006 [-0.009, -0.004]  worse
+  undrogued starts       day   1  M4 own type + 0.25 x other   -0.000 [-0.002, +0.001]  no clear difference
+  undrogued starts       day   1  M4 own type + 0.5 x other    +0.001 [-0.000, +0.001]  no clear difference
+  undrogued starts       day   7  M2 fitted on drogued         -0.061 [-0.074, -0.049]  worse
+  undrogued starts       day   7  M2 fitted on undrogued       -0.001 [-0.010, +0.008]  no clear difference
+  undrogued starts       day   7  M4 own type + 0.25 x other   +0.006 [+0.001, +0.011]  better
+  undrogued starts       day   7  M4 own type + 0.5 x other    +0.005 [+0.002, +0.008]  better
+  undrogued starts       day  30  M2 fitted on drogued         -0.086 [-0.119, -0.057]  worse
+  undrogued starts       day  30  M2 fitted on undrogued       +0.015 [-0.005, +0.038]  no clear difference
+  undrogued starts       day  30  M4 own type + 0.25 x other   +0.015 [+0.002, +0.030]  better
+  undrogued starts       day  30  M4 own type + 0.5 x other    +0.010 [+0.003, +0.019]  better
+  undrogued starts       day  90  M2 fitted on drogued         -0.074 [-0.119, -0.036]  worse
+  undrogued starts       day  90  M2 fitted on undrogued       +0.038 [+0.010, +0.071]  better
+  undrogued starts       day  90  M4 own type + 0.25 x other   +0.025 [+0.008, +0.045]  better
+  undrogued starts       day  90  M4 own type + 0.5 x other    +0.014 [+0.005, +0.026]  better
+
+What the two operators say (even start over R):
+ operator  even_start_still_in_R_day30  day90  day365  days_until_half_left  left_N_by_day365  left_S_by_day365  left_E_by_day365  left_W_by_day365
+  drogued                        0.818  0.585   0.077                   116             0.072             0.051              0.79             0.010
+undrogued                        0.758  0.469   0.027                    83             0.070             0.043              0.85             0.011
+
+==============================================================================
+RQ4b  SEASON (drogued)
+==============================================================================
+  training moves per season: DJF 7,458, MAM 7,512, JJA 5,421, SON 4,871
+           set                 model  horizon_days  cases  drifters  log_score  in_90pct_area_%  median_centre_error_km
+drogued starts           M2 all-year             1   8844       100      -1.11            91.88                   43.07
+drogued starts   M4 seasonal, pull 0             1   8844       100      -1.15            90.32                   42.89
+drogued starts  M4 seasonal, pull 20             1   8844       100      -1.12            91.82                   42.84
+drogued starts M4 seasonal, pull 100             1   8844       100      -1.11            92.13                   42.89
+drogued starts M4 seasonal, pull 500             1   8844       100      -1.11            92.04                   43.06
+drogued starts           M2 all-year             7   8653        98      -2.91            87.80                  115.48
+drogued starts   M4 seasonal, pull 0             7   8653        98      -3.01            85.67                  118.23
+drogued starts  M4 seasonal, pull 20             7   8653        98      -2.93            87.77                  116.51
+drogued starts M4 seasonal, pull 100             7   8653        98      -2.91            87.83                  115.65
+drogued starts M4 seasonal, pull 500             7   8653        98      -2.91            87.81                  115.55
+drogued starts           M2 all-year            30   8087        96      -3.81            86.46                  263.00
+drogued starts   M4 seasonal, pull 0            30   8087        96      -3.88            83.22                  261.91
+drogued starts  M4 seasonal, pull 20            30   8087        96      -3.82            85.93                  262.38
+drogued starts M4 seasonal, pull 100            30   8087        96      -3.81            86.42                  262.17
+drogued starts M4 seasonal, pull 500            30   8087        96      -3.81            86.47                  262.46
+drogued starts           M2 all-year            90   7141        90      -3.09            90.20                  455.69
+drogued starts   M4 seasonal, pull 0            90   7141        90      -3.12            87.66                  460.69
+drogued starts  M4 seasonal, pull 20            90   7141        90      -3.08            89.62                  457.40
+drogued starts M4 seasonal, pull 100            90   7141        90      -3.08            89.93                  456.41
+drogued starts M4 seasonal, pull 500            90   7141        90      -3.08            90.13                  456.07
+
+Gain in log score over the all-year operator:
+  drogued starts         day   1  M4 seasonal, pull 0          -0.034 [-0.043, -0.026]  worse
+  drogued starts         day   1  M4 seasonal, pull 20         -0.004 [-0.007, -0.000]  worse
+  drogued starts         day   1  M4 seasonal, pull 100        +0.001 [-0.000, +0.002]  no clear difference
+  drogued starts         day   1  M4 seasonal, pull 500        +0.000 [+0.000, +0.001]  better
+  drogued starts         day   7  M4 seasonal, pull 0          -0.096 [-0.125, -0.071]  worse
+  drogued starts         day   7  M4 seasonal, pull 20         -0.018 [-0.030, -0.005]  worse
+  drogued starts         day   7  M4 seasonal, pull 100        -0.001 [-0.006, +0.003]  no clear difference
+  drogued starts         day   7  M4 seasonal, pull 500        +0.000 [-0.001, +0.001]  no clear difference
+  drogued starts         day  30  M4 seasonal, pull 0          -0.067 [-0.110, -0.027]  worse
+  drogued starts         day  30  M4 seasonal, pull 20         -0.004 [-0.024, +0.016]  no clear difference
+  drogued starts         day  30  M4 seasonal, pull 100        +0.004 [-0.004, +0.012]  no clear difference
+  drogued starts         day  30  M4 seasonal, pull 500        +0.001 [-0.000, +0.003]  no clear difference
+  drogued starts         day  90  M4 seasonal, pull 0          -0.029 [-0.069, +0.010]  no clear difference
+  drogued starts         day  90  M4 seasonal, pull 20         +0.006 [-0.011, +0.024]  no clear difference
+  drogued starts         day  90  M4 seasonal, pull 100        +0.005 [-0.001, +0.012]  no clear difference
+  drogued starts         day  90  M4 seasonal, pull 500        +0.002 [+0.000, +0.003]  better
+
+==============================================================================
+RQ5a  GAM (drogued)
+==============================================================================
+ n_knots  ridge  val_log_score
+       4    1.0         -3.748
+       4   10.0         -3.619
+       4  100.0         -3.696
+       4 1000.0         -6.445
+       5    1.0         -3.644
+       5   10.0         -3.555
+       5  100.0         -3.781
+       5 1000.0         -8.311
+       8    1.0         -3.646
+       8   10.0         -3.587
+       8  100.0         -4.576
+       8 1000.0        -11.031
+      12    1.0         -3.656
+      12   10.0         -3.849
+      12  100.0         -6.521
+      12 1000.0        -11.415
+Chosen GAM: 5 knots per axis, ridge 10.0
+
+==============================================================================
+RQ5b  NEURAL NETWORK
+==============================================================================
+  hidden   l2  val_log_score
+(32, 32) 0.00         -3.643
+(32, 32) 0.01         -3.643
+(64, 64) 0.00         -3.649
+(64, 64) 0.01         -3.651
+Chosen network: hidden (32, 32), L2 0.01
+
+=== Whole ladder on the validation drifters ===
+           set                           model  horizon_days  cases  drifters  log_score  in_90pct_area_%  median_centre_error_km
+drogued starts                M0b displacement             1   8844       100      -1.18            89.86                   43.97
+drogued starts                    M1 empirical             1   8844       100      -1.30            90.36                   42.96
+drogued starts                     M2 smoothed             1   8844       100      -1.11            91.88                   43.07
+drogued starts                          M5 GAM             1   8844       100      -1.14            90.39                   43.44
+drogued starts                   M6 neural net             1   8844       100      -1.17            93.25                   43.74
+drogued starts M6+ neural net (season, drogue)             1   8844       100      -1.16            92.68                   43.76
+drogued starts                M0b displacement             7   8653        98      -3.27            82.01                  121.69
+drogued starts                    M1 empirical             7   8653        98      -3.05            85.81                  115.75
+drogued starts                     M2 smoothed             7   8653        98      -2.91            87.80                  115.48
+drogued starts                          M5 GAM             7   8653        98      -3.08            82.34                  118.33
+drogued starts                   M6 neural net             7   8653        98      -3.16            85.08                  120.49
+drogued starts M6+ neural net (season, drogue)             7   8653        98      -3.17            83.96                  121.79
+drogued starts                M0b displacement            30   8087        96      -4.31            75.76                  285.23
+drogued starts                    M1 empirical            30   8087        96      -3.86            85.56                  263.56
+drogued starts                     M2 smoothed            30   8087        96      -3.81            86.46                  263.00
+drogued starts                          M5 GAM            30   8087        96      -4.03            79.70                  273.29
+drogued starts                   M6 neural net            30   8087        96      -4.13            79.20                  277.24
+drogued starts M6+ neural net (season, drogue)            30   8087        96      -4.15            77.79                  281.79
+drogued starts                M0b displacement            90   7141        90      -3.39            83.36                  418.81
+drogued starts                    M1 empirical            90   7141        90      -3.10            89.33                  450.34
+drogued starts                     M2 smoothed            90   7141        90      -3.09            90.20                  455.69
+drogued starts                          M5 GAM            90   7141        90      -3.33            86.79                  463.30
+drogued starts                   M6 neural net            90   7141        90      -3.26            84.09                  433.20
+drogued starts M6+ neural net (season, drogue)            90   7141        90      -3.31            82.94                  455.20
+
+Gain in log score over M2 (positive = better, 90% interval):
+  drogued starts         day   1  M0b displacement             -0.062 [-0.076, -0.049]  worse
+  drogued starts         day   1  M1 empirical                 -0.183 [-0.215, -0.151]  worse
+  drogued starts         day   1  M5 GAM                       -0.023 [-0.032, -0.014]  worse
+  drogued starts         day   1  M6 neural net                -0.052 [-0.066, -0.040]  worse
+  drogued starts         day   1  M6+ neural net (season, drogue) -0.046 [-0.059, -0.034]  worse
+  drogued starts         day   7  M0b displacement             -0.362 [-0.428, -0.307]  worse
+  drogued starts         day   7  M1 empirical                 -0.134 [-0.197, -0.074]  worse
+  drogued starts         day   7  M5 GAM                       -0.165 [-0.198, -0.134]  worse
+  drogued starts         day   7  M6 neural net                -0.246 [-0.306, -0.191]  worse
+  drogued starts         day   7  M6+ neural net (season, drogue) -0.261 [-0.322, -0.206]  worse
+  drogued starts         day  30  M0b displacement             -0.496 [-0.610, -0.373]  worse
+  drogued starts         day  30  M1 empirical                 -0.050 [-0.094, -0.010]  worse
+  drogued starts         day  30  M5 GAM                       -0.222 [-0.296, -0.155]  worse
+  drogued starts         day  30  M6 neural net                -0.316 [-0.401, -0.220]  worse
+  drogued starts         day  30  M6+ neural net (season, drogue) -0.338 [-0.426, -0.250]  worse
+  drogued starts         day  90  M0b displacement             -0.302 [-0.402, -0.184]  worse
+  drogued starts         day  90  M1 empirical                 -0.015 [-0.035, +0.002]  no clear difference
+  drogued starts         day  90  M5 GAM                       -0.244 [-0.334, -0.160]  worse
+  drogued starts         day  90  M6 neural net                -0.173 [-0.249, -0.083]  worse
+  drogued starts         day  90  M6+ neural net (season, drogue) -0.221 [-0.311, -0.119]  worse
+
+Step 4 done in 1.3 min. Outputs in /tmp/cleantest/data/models/step4

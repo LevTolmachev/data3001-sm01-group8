@@ -1,0 +1,140 @@
+Reading cached extract /tmp/cleantest/data/gdp_bmc_extract.parquet
+/tmp/cleantest/code/step2_models_M0_M1_M2.py:198: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  nxt_in = tr["inR_next"].fillna(False).astype(bool).values
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+Drogue set: drogued. M2 settings from step 2: sigma = 0.5, alpha = 2.0
+Drifters per split: train 429, val 143, test 143, recent_test 118
+
+Collecting starts (every drifter-day inside R) ...
+  training starts 25,543, validation starts 8,876
+  check: max |M1 here - M1 step 2| = 0.00e+00 (should be ~0)
+
+==============================================================================
+A. RQ3  CELL SIZE AND SHAPE (M1 on training drifters, scored on validation drifters)
+==============================================================================
+  square 0.5° done: 1600 cells, 1348 visited, 40% of them with >= 10 drifters
+  square 1°   done: 400 cells, 350 visited, 73% of them with >= 10 drifters
+  square 2°   done: 100 cells, 90 visited, 84% of them with >= 10 drifters
+  hex ≈1°     done: 437 cells, 372 visited, 70% of them with >= 10 drifters
+  hex ≈2°     done: 123 cells, 105 visited, 82% of them with >= 10 drifters
+                    grid  horizon_days  log_score_per_km2  log_score_per_km2_p05  log_score_per_km2_p95  in_90pct_area_%  area_90pct_1000km2  median_centre_error_km
+             square 0.5°             7             -12.05                 -12.29                 -11.77            68.65               69.41                  109.08
+             square 0.5°            30             -11.42                 -11.88                 -10.87            71.31              300.91                  256.12
+             square 0.5°            90              -7.62                  -8.53                  -6.64            81.26              560.64                  423.78
+               square 1°             7             -11.60                 -11.76                 -11.40            85.81              142.02                  115.75
+               square 1°            30             -10.92                 -11.36                 -10.41            85.56              483.17                  263.56
+               square 1°            90              -7.24                  -8.15                  -6.24            89.33              866.13                  450.34
+               square 2°             7             -11.85                 -11.99                 -11.68            93.34              287.44                  135.59
+               square 2°            30             -11.01                 -11.47                 -10.47            93.45              752.76                  279.52
+               square 2°            90              -7.26                  -8.19                  -6.25            94.54             1251.47                  481.67
+                 hex ≈1°             7             -11.60                 -11.76                 -11.39            85.77              144.29                  114.25
+                 hex ≈1°            30             -10.97                 -11.42                 -10.45            85.98              495.85                  261.29
+                 hex ≈1°            90              -7.29                  -8.19                  -6.27            89.72              855.19                  449.16
+                 hex ≈2°             7             -11.84                 -12.00                 -11.66            93.51              289.57                  134.28
+                 hex ≈2°            30             -11.00                 -11.45                 -10.47            93.15              822.23                  274.46
+                 hex ≈2°            90              -7.26                  -8.17                  -6.29            94.36             1265.53                  472.87
+M2 square 1° (reference)             7             -11.46                 -11.62                 -11.28            87.80              146.68                  115.48
+M2 square 1° (reference)            30             -10.87                 -11.33                 -10.35            86.46              487.68                  263.00
+M2 square 1° (reference)            90              -7.23                  -8.13                  -6.23            90.20              884.66                  455.69
+
+Paired difference in log score per km2 against square 1° M1 (positive = better, 90% interval):
+  day   7  square 0.5°                -0.457  [-0.596, -0.304]  worse
+  day   7  square 2°                  -0.259  [-0.330, -0.193]  worse
+  day   7  hex ≈1°                    -0.000  [-0.051, +0.052]  no clear difference
+  day   7  hex ≈2°                    -0.249  [-0.324, -0.177]  worse
+  day   7  M2 square 1° (reference)   +0.134  [+0.074, +0.198]  better
+  day  30  square 0.5°                -0.493  [-0.639, -0.340]  worse
+  day  30  square 2°                  -0.085  [-0.150, -0.021]  worse
+  day  30  hex ≈1°                    -0.044  [-0.093, +0.008]  no clear difference
+  day  30  hex ≈2°                    -0.075  [-0.171, +0.016]  no clear difference
+  day  30  M2 square 1° (reference)   +0.050  [+0.010, +0.095]  better
+  day  90  square 0.5°                -0.380  [-0.549, -0.250]  worse
+  day  90  square 2°                  -0.022  [-0.068, +0.026]  no clear difference
+  day  90  hex ≈1°                    -0.048  [-0.095, -0.009]  worse
+  day  90  hex ≈2°                    -0.020  [-0.099, +0.042]  no clear difference
+  day  90  M2 square 1° (reference)   +0.015  [-0.002, +0.035]  no clear difference
+  saved fig_rq3_cell_size_shape.png
+
+==============================================================================
+B. RQ3  TIME STEP AND MARKOV CHECK (square 1°, M1)
+==============================================================================
+  step  horizon_days  log_score  log_score_p05  log_score_p95  in_90pct_area_%  median_centre_error_km
+     1             6      -2.89          -2.99          -2.79            85.94                  105.23
+     2             6      -2.89          -2.99          -2.78            85.56                  104.98
+     3             6      -2.95          -3.06          -2.84            85.29                  104.17
+     6             6      -4.15          -4.37          -3.92            74.34                  105.21
+direct             6      -4.15          -4.37          -3.92            74.34                  105.21
+     1            12      -3.51          -3.61          -3.38            83.49                  160.06
+     2            12      -3.49          -3.60          -3.36            82.84                  160.28
+     3            12      -3.47          -3.58          -3.35            83.13                  159.98
+     6            12      -3.66          -3.82          -3.51            81.63                  159.75
+direct            12      -6.13          -6.44          -5.83            59.17                  162.50
+     1            30      -3.86          -4.01          -3.68            85.56                  263.56
+     2            30      -3.84          -3.99          -3.65            85.72                  262.40
+     3            30      -3.81          -3.96          -3.63            86.22                  261.76
+     6            30      -3.80          -3.96          -3.62            86.18                  260.70
+direct            30      -7.86          -8.28          -7.43            45.37                  270.08
+     1            60      -3.64          -3.89          -3.37            87.54                  374.13
+     2            60      -3.62          -3.86          -3.35            87.58                  373.74
+     3            60      -3.60          -3.84          -3.32            87.62                  374.91
+     6            60      -3.57          -3.82          -3.29            88.06                  375.55
+direct            60      -7.67          -8.23          -7.03            46.36                  394.76
+     1            90      -3.10          -3.43          -2.77            89.33                  450.34
+     2            90      -3.09          -3.42          -2.76            88.92                  448.08
+     3            90      -3.07          -3.40          -2.74            89.22                  447.30
+     6            90      -3.06          -3.39          -2.72            89.25                  446.55
+direct            90      -6.59          -7.25          -5.83            54.89                  442.29
+
+Markov check: how different is 'iterate the 1-day operator' from 'fit the H-day move directly'?
+(total-variation distance per start cell, 0 = identical, 1 = no overlap; the split-half value is
+ the difference between two halves of the training drifters, i.e. what sampling noise alone gives)
+ horizon_days  tv_iterated_vs_direct  tv_split_half_reference
+            6                  0.267                    0.500
+           12                  0.391                    0.626
+           30                  0.526                    0.708
+           60                  0.564                    0.666
+           90                  0.533                    0.574
+
+Paired difference in log score, iterated 1-day operator minus direct fit (positive = iterating is better):
+  day   6: +1.260 [+1.098, +1.412]
+  day  12: +2.629 [+2.407, +2.852]
+  day  30: +3.999 [+3.693, +4.310]
+  day  60: +4.030 [+3.620, +4.371]
+  day  90: +3.485 [+3.000, +3.880]
+  saved fig_rq3_time_step_markov.png
+
+==============================================================================
+C. RQ1  FINAL OPERATOR (M2, 1°, training + validation drifters) WITH BOOTSTRAP
+==============================================================================
+Fitted on 398 drifters, 34,106 daily moves; masked cells: 122 of 400
+Bootstrap: refitting the final operator on 100 resamples of whole drifters ...
+  25/100 (1 s)
+  50/100 (2 s)
+  75/100 (3 s)
+  100/100 (4 s)
+
+Release forecasts (share of material; 90% bootstrap interval in brackets):
+  Confluence 38S 54W         day   7: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Confluence 38S 54W         day  30: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Confluence 38S 54W         day 365: still in R 11% [7%-17%]; left N 3%, S 5%, E 81%, W 0%
+  Brazil Current 33S 50W     day   7: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Brazil Current 33S 50W     day  30: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Brazil Current 33S 50W     day 365: still in R 14% [10%-21%]; left N 13%, S 1%, E 71%, W 0%
+  Malvinas Current 44S 58W   day   7: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Malvinas Current 44S 58W   day  30: still in R 100% [100%-100%]; left N 0%, S 0%, E 0%, W 0%
+  Malvinas Current 44S 58W   day 365: still in R 11% [8%-16%]; left N 1%, S 12%, E 74%, W 1%
+Relative density, day 30: 71 supported cells confidently GATHER material (whole 90% interval above 1), 55 confidently LOSE it, 152 not distinguishable from 1
+Relative density, day 90: 66 supported cells confidently GATHER material (whole 90% interval above 1), 68 confidently LOSE it, 144 not distinguishable from 1
+Median time in R from a supported cell: 113 days (cells where half the material is still in R after a year: 0)
+Most likely exit edge (supported cells): N 8, S 0, E 269, W 1
+  saved fig_rq1_release_forecasts.png
+  saved fig_rq1_fate_maps.png
+Saved operator_M2_final_drogued.npz (P plus 30 bootstrap operators for the viewer)
+
+==============================================================================
+D. RQ2  FINAL HELD-OUT TEST
+==============================================================================
+Skipped (RUN_FINAL_TEST = False). Set it to True once sections A-C are agreed, and run once.
+
+Step 3 done in 0.5 min. Outputs in /tmp/cleantest/data/models/step3
+Please send back the printed output and the fig_*.png files from that folder.

@@ -1,0 +1,15 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+overlay only title_map
+overlay only locator
+overlay only fig_motivation_map
+saved fig_tracks.png
+saved fig_meanflow.png
+saved fig_data_support.png
+saved fig_release_confluence.png
+saved fig_fate_density.png
+saved fig_test_calibration.png
+saved fig_ladder_test.png
+saved fig_rq3_grid.png
+saved fig_markov.png
+saved fig_drogue.png
+All figures written to /tmp/cleantest/data/models/figures | overlays: title_map, locator, fig_motivation_map, fig_tracks, fig_meanflow, fig_data_support, fig_release_confluence, fig_fate_density, fig_rq3_grid, fig_drogue

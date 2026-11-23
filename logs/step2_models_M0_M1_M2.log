@@ -1,0 +1,86 @@
+Reading cached extract /tmp/cleantest/data/gdp_bmc_extract.parquet
+/tmp/cleantest/code/step2_models_M0_M1_M2.py:198: FutureWarning: Downcasting object dtype arrays on .fillna, .ffill, .bfill is deprecated and will change in a future version. Call result.infer_objects(copy=False) instead. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  nxt_in = tr["inR_next"].fillna(False).astype(bool).values
+Created and froze splits in /tmp/cleantest/data/models/splits.csv (recent_test = drifters first in R from 2019)
+Drifters per split: train 429, val 143, test 143, recent_test 118
+Training moves (drogued): 25,262 from 298 drifters; ocean cells: 353; displacement window ±2 cells
+Masked cells (fewer than 10 distinct drifters, or never visited): 143 of 400
+
+Building position and fate checks for the validation drifters...
+  position cases at [7, 14, 30, 60, 90] days: 8653, 8460, 8087, 7521, 7141; fate starts: 1850 (1269 seen to exit)
+
+Tuning M2 on validation drifters...
+ sigma  alpha  val_log_score  val_in_90pct_%
+   0.0      0         -3.454          85.683
+   0.0      2         -3.387          86.298
+   0.0     10         -3.373          87.341
+   0.0     50         -3.425          86.053
+   0.5      0         -3.366          86.985
+   0.5      2         -3.362          87.128
+   0.5     10         -3.368          87.480
+   0.5     50         -3.440          86.019
+   1.0      0         -3.398          86.193
+   1.0      2         -3.400          86.307
+   1.0     10         -3.416          85.939
+   1.0     50         -3.496          84.791
+   1.5      0         -3.450          85.026
+   1.5      2         -3.454          84.897
+   1.5     10         -3.471          84.727
+   1.5     50         -3.546          83.906
+Chosen M2: sigma = 0.5, alpha = 2.0
+
+=== Validation: position (headline 7 and 30 days) ===
+           model  horizon_days  cases  drifters  log_score  in_50pct_area_%  in_90pct_area_%  cells_in_90pct_area  median_centre_error_km  median_persistence_error_km
+ M0a persistence             7   8653        98     -11.70            15.29            15.29                  1.0                  122.36                       114.92
+ M0a persistence            14   8460        97     -12.86             6.95             6.95                  1.0                  190.50                       184.60
+ M0a persistence            30   8087        96     -13.57             1.79             1.79                  1.0                  302.39                       301.44
+ M0a persistence            60   7521        94     -13.70             0.84             0.84                  1.0                  441.59                       438.92
+ M0a persistence            90   7141        90     -13.79             0.20             0.20                  1.0                  537.73                       537.41
+M0b displacement             7   8653        98      -3.27            47.69            82.01                 19.0                  121.69                       114.92
+M0b displacement            14   8460        97      -3.97            38.94            77.81                 32.0                  189.57                       184.60
+M0b displacement            30   8087        96      -4.31            38.39            75.76                 52.0                  285.23                       301.44
+M0b displacement            60   7521        94      -4.03            44.01            77.34                 62.0                  377.86                       438.92
+M0b displacement            90   7141        90      -3.39            50.55            83.36                 58.0                  418.81                       537.41
+    M1 empirical             7   8653        98      -3.05            46.89            85.81                 14.0                  115.75                       114.92
+    M1 empirical            14   8460        97      -3.61            43.88            83.76                 26.0                  174.79                       184.60
+    M1 empirical            30   8087        96      -3.86            45.10            85.56                 51.0                  263.56                       301.44
+    M1 empirical            60   7521        94      -3.64            53.85            87.54                 79.0                  374.13                       438.92
+    M1 empirical            90   7141        90      -3.10            64.18            89.33                 90.0                  450.34                       537.41
+     M2 smoothed             7   8653        98      -2.91            49.69            87.80                 15.0                  115.48                       114.92
+     M2 smoothed            14   8460        97      -3.50            46.41            85.47                 27.0                  173.63                       184.60
+     M2 smoothed            30   8087        96      -3.81            46.59            86.46                 52.0                  263.00                       301.44
+     M2 smoothed            60   7521        94      -3.60            55.21            88.38                 82.0                  375.56                       438.92
+     M2 smoothed            90   7141        90      -3.09            64.67            90.20                 95.0                  455.69                       537.41
+
+=== Validation: fate up to day 365 ===
+Observed (Kaplan-Meier, allows for records that stop): still in R after 7 d 93%, 30 d 77%, 365 d not enough data
+  the observed curve is reliable up to day 283 (at least 30 starts still tracked); beyond that the 1-year check rests on exit edges only
+           model  observed_up_to_day  still_in_R_abs_error  pred_still_in_R_day_30  obs_still_in_R_day_30  pred_still_in_R_day_365  obs_still_in_R_day_365  exit_edge_brier  exit_edge_accuracy  pred_share_left_N  pred_share_left_S  pred_share_left_E  pred_share_left_W
+ M0a persistence                 283                 0.630                   1.000                  0.775                    1.000                     NaN              NaN                 NaN                NaN                NaN                NaN                NaN
+M0b displacement                 283                 0.041                   0.696                  0.775                    0.019                     NaN            0.365               0.709              0.143              0.181              0.659              0.017
+    M1 empirical                 283                 0.087                   0.799                  0.775                    0.081                     NaN            0.169               0.893              0.107              0.047              0.841              0.006
+     M2 smoothed                 283                 0.077                   0.790                  0.775                    0.075                     NaN            0.173               0.887              0.107              0.059              0.825              0.009
+Observed exit edges (drifters seen to leave): N 11%, S 1%, E 87%, W 1%
+
+Bootstrap of M2 (200 resamples of whole training drifters)...
+  bootstrap 50/200 (1 s)
+  bootstrap 100/200 (2 s)
+  bootstrap 150/200 (3 s)
+  bootstrap 200/200 (4 s)
+                              p05  median    p95
+release_still_in_R_day_7    1.000   1.000  1.000
+even_still_in_R_day_7       0.938   0.943  0.947
+release_still_in_R_day_30   1.000   1.000  1.000
+even_still_in_R_day_30      0.798   0.814  0.828
+release_still_in_R_day_365  0.077   0.128  0.187
+even_still_in_R_day_365     0.054   0.082  0.118
+release_left_N_day_365      0.018   0.035  0.056
+even_left_N_day_365         0.050   0.073  0.097
+release_left_S_day_365      0.027   0.043  0.065
+even_left_S_day_365         0.039   0.048  0.062
+release_left_E_day_365      0.728   0.792  0.849
+even_left_E_day_365         0.745   0.787  0.824
+release_left_W_day_365      0.001   0.002  0.004
+even_left_W_day_365         0.007   0.010  0.013
+
+Done in 0.4 min. Outputs in /tmp/cleantest/data/models

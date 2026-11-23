@@ -1,0 +1,141 @@
+Re-using frozen splits from /tmp/cleantest/data/models/splits.csv
+Reference on validation: M2 -3.362 (mean log score at 7 and 30 days)
+
+A1. Multinomial GAM
+ n_knots    C  val_log_score
+       6 0.03         -3.624
+       6 0.30         -3.516
+       6 3.00         -3.454
+      10 0.03         -3.622
+      10 0.30         -3.468
+      10 3.00         -3.410
+      14 0.03         -3.648
+      14 0.30         -3.465
+      14 3.00         -3.390
+
+A2. Wider network (3 networks per setting while searching, 5 for the chosen one)
+ fourier_freqs       hidden    l2  val_log_score
+             0     (64, 64) 0.000         -3.659
+             0     (64, 64) 0.001         -3.658
+             0     (64, 64) 0.010         -3.659
+             0   (128, 128) 0.000         -3.644
+             0   (128, 128) 0.001         -3.644
+             0   (128, 128) 0.010         -3.643
+             0 (64, 64, 64) 0.000         -3.668
+             0 (64, 64, 64) 0.001         -3.668
+             0 (64, 64, 64) 0.010         -3.668
+             3     (64, 64) 0.000         -3.409
+             3     (64, 64) 0.001         -3.383
+             3     (64, 64) 0.010         -3.403
+             3   (128, 128) 0.000         -3.439
+             3   (128, 128) 0.001         -3.417
+             3   (128, 128) 0.010         -3.435
+             3 (64, 64, 64) 0.000         -3.395
+             3 (64, 64, 64) 0.001         -3.384
+             3 (64, 64, 64) 0.010         -3.390
+
+A3. Hybrids: M2 shrunk towards the GAM / the network
+  prior  sigma  alpha  val_log_score
+    GAM    0.0      2         -3.398
+    GAM    0.0     10         -3.376
+    GAM    0.0     50         -3.361
+    GAM    0.0    200         -3.369
+    GAM    0.5      2         -3.363
+    GAM    0.5     10         -3.360
+    GAM    0.5     50         -3.361
+    GAM    0.5    200         -3.373
+network    0.0      2         -3.397
+network    0.0     10         -3.374
+network    0.0     50         -3.358
+network    0.0    200         -3.367
+network    0.5      2         -3.363
+network    0.5     10         -3.359
+network    0.5     50         -3.359
+network    0.5    200         -3.371
+Chosen: {'mgam_knots': 14, 'mgam_C': 3.0, 'nn_hidden': '(64, 64)', 'nn_l2': 0.001, 'nn_freqs': 3, 'hg_sigma': 0.5, 'hg_alpha': 10, 'hn_sigma': 0.0, 'hn_alpha': 50}
+
+B. Validation: gain in log score over M2 (positive = better, 90% interval)
+  validation / drogued   day   1  M1 empirical                 -0.183 [-0.215, -0.151]  worse
+  validation / drogued   day   1  M5 Gaussian GAM              -0.023 [-0.032, -0.014]  worse
+  validation / drogued   day   1  M6 small network             -0.052 [-0.066, -0.040]  worse
+  validation / drogued   day   1  M5b multinomial GAM          +0.005 [+0.002, +0.009]  better
+  validation / drogued   day   1  M6b wider network            +0.006 [+0.002, +0.010]  better
+  validation / drogued   day   1  M2 + GAM prior               +0.002 [+0.001, +0.003]  better
+  validation / drogued   day   1  M2 + network prior           +0.001 [-0.001, +0.003]  no clear difference
+  validation / drogued   day   7  M1 empirical                 -0.134 [-0.197, -0.074]  worse
+  validation / drogued   day   7  M5 Gaussian GAM              -0.165 [-0.198, -0.134]  worse
+  validation / drogued   day   7  M6 small network             -0.246 [-0.306, -0.191]  worse
+  validation / drogued   day   7  M5b multinomial GAM          -0.016 [-0.031, -0.003]  worse
+  validation / drogued   day   7  M6b wider network            -0.020 [-0.036, -0.005]  worse
+  validation / drogued   day   7  M2 + GAM prior               +0.002 [+0.000, +0.004]  better
+  validation / drogued   day   7  M2 + network prior           +0.001 [-0.005, +0.008]  no clear difference
+  validation / drogued   day  30  M1 empirical                 -0.050 [-0.094, -0.010]  worse
+  validation / drogued   day  30  M5 Gaussian GAM              -0.222 [-0.296, -0.155]  worse
+  validation / drogued   day  30  M6 small network             -0.316 [-0.401, -0.220]  worse
+  validation / drogued   day  30  M5b multinomial GAM          -0.040 [-0.070, -0.011]  worse
+  validation / drogued   day  30  M6b wider network            -0.038 [-0.074, -0.006]  worse
+  validation / drogued   day  30  M2 + GAM prior               +0.002 [-0.001, +0.006]  no clear difference
+  validation / drogued   day  30  M2 + network prior           +0.006 [-0.006, +0.019]  no clear difference
+  validation / drogued   day  90  M1 empirical                 -0.015 [-0.035, +0.002]  no clear difference
+  validation / drogued   day  90  M5 Gaussian GAM              -0.244 [-0.334, -0.160]  worse
+  validation / drogued   day  90  M6 small network             -0.173 [-0.249, -0.083]  worse
+  validation / drogued   day  90  M5b multinomial GAM          -0.067 [-0.108, -0.020]  worse
+  validation / drogued   day  90  M6b wider network            -0.026 [-0.070, +0.018]  no clear difference
+  validation / drogued   day  90  M2 + GAM prior               -0.001 [-0.005, +0.004]  no clear difference
+  validation / drogued   day  90  M2 + network prior           +0.011 [-0.006, +0.029]  no clear difference
+
+B2. Season for UNDROGUED drifters (validation)
+  validation / undrogued day   1  M4 seasonal, pull 0          -0.027 [-0.034, -0.021]  worse
+  validation / undrogued day   1  M4 seasonal, pull 20         -0.003 [-0.006, -0.000]  worse
+  validation / undrogued day   1  M4 seasonal, pull 100        +0.001 [-0.000, +0.002]  no clear difference
+  validation / undrogued day   1  M4 seasonal, pull 500        +0.001 [+0.000, +0.001]  better
+  validation / undrogued day   7  M4 seasonal, pull 0          -0.038 [-0.060, -0.016]  worse
+  validation / undrogued day   7  M4 seasonal, pull 20         +0.005 [-0.005, +0.014]  no clear difference
+  validation / undrogued day   7  M4 seasonal, pull 100        +0.008 [+0.004, +0.012]  better
+  validation / undrogued day   7  M4 seasonal, pull 500        +0.003 [+0.002, +0.004]  better
+  validation / undrogued day  30  M4 seasonal, pull 0          -0.017 [-0.056, +0.025]  no clear difference
+  validation / undrogued day  30  M4 seasonal, pull 20         +0.021 [+0.001, +0.045]  better
+  validation / undrogued day  30  M4 seasonal, pull 100        +0.017 [+0.008, +0.028]  better
+  validation / undrogued day  30  M4 seasonal, pull 500        +0.006 [+0.003, +0.009]  better
+  validation / undrogued day  90  M4 seasonal, pull 0          +0.022 [-0.025, +0.072]  no clear difference
+  validation / undrogued day  90  M4 seasonal, pull 20         +0.033 [+0.002, +0.065]  better
+  validation / undrogued day  90  M4 seasonal, pull 100        +0.021 [+0.006, +0.036]  better
+  validation / undrogued day  90  M4 seasonal, pull 500        +0.006 [+0.002, +0.011]  better
+
+==============================================================================
+C. TEST DRIFTERS, step-8 models only (second use of the test set: disclose)
+==============================================================================
+  test / drogued         day   1  M5b multinomial GAM          -0.000 [-0.004, +0.003]  no clear difference
+  test / drogued         day   1  M6b wider network            -0.001 [-0.005, +0.004]  no clear difference
+  test / drogued         day   1  M2 + GAM prior               +0.001 [+0.000, +0.002]  better
+  test / drogued         day   1  M2 + network prior           -0.002 [-0.004, +0.000]  no clear difference
+  test / drogued         day   7  M5b multinomial GAM          -0.025 [-0.036, -0.012]  worse
+  test / drogued         day   7  M6b wider network            -0.017 [-0.031, -0.002]  worse
+  test / drogued         day   7  M2 + GAM prior               +0.002 [+0.000, +0.004]  better
+  test / drogued         day   7  M2 + network prior           +0.002 [-0.004, +0.009]  no clear difference
+  test / drogued         day  30  M5b multinomial GAM          -0.070 [-0.104, -0.034]  worse
+  test / drogued         day  30  M6b wider network            -0.049 [-0.082, -0.014]  worse
+  test / drogued         day  30  M2 + GAM prior               +0.002 [-0.004, +0.008]  no clear difference
+  test / drogued         day  30  M2 + network prior           +0.006 [-0.008, +0.023]  no clear difference
+  test / drogued         day  90  M5b multinomial GAM          -0.089 [-0.144, -0.039]  worse
+  test / drogued         day  90  M6b wider network            -0.090 [-0.137, -0.046]  worse
+  test / drogued         day  90  M2 + GAM prior               +0.000 [-0.004, +0.005]  no clear difference
+  test / drogued         day  90  M2 + network prior           -0.014 [-0.027, -0.002]  worse
+  recent_test / drogued  day   1  M5b multinomial GAM          -0.005 [-0.011, -0.000]  worse
+  recent_test / drogued  day   1  M6b wider network            -0.007 [-0.012, -0.002]  worse
+  recent_test / drogued  day   1  M2 + GAM prior               +0.001 [+0.000, +0.001]  better
+  recent_test / drogued  day   1  M2 + network prior           -0.002 [-0.005, -0.000]  worse
+  recent_test / drogued  day   7  M5b multinomial GAM          -0.049 [-0.060, -0.038]  worse
+  recent_test / drogued  day   7  M6b wider network            -0.041 [-0.056, -0.026]  worse
+  recent_test / drogued  day   7  M2 + GAM prior               +0.000 [-0.001, +0.002]  no clear difference
+  recent_test / drogued  day   7  M2 + network prior           +0.005 [-0.004, +0.016]  no clear difference
+  recent_test / drogued  day  30  M5b multinomial GAM          -0.100 [-0.135, -0.066]  worse
+  recent_test / drogued  day  30  M6b wider network            -0.084 [-0.118, -0.049]  worse
+  recent_test / drogued  day  30  M2 + GAM prior               -0.000 [-0.005, +0.004]  no clear difference
+  recent_test / drogued  day  30  M2 + network prior           -0.001 [-0.020, +0.017]  no clear difference
+  recent_test / drogued  day  90  M5b multinomial GAM          -0.077 [-0.153, -0.012]  worse
+  recent_test / drogued  day  90  M6b wider network            -0.081 [-0.149, -0.023]  worse
+  recent_test / drogued  day  90  M2 + GAM prior               +0.002 [-0.003, +0.007]  no clear difference
+  recent_test / drogued  day  90  M2 + network prior           -0.002 [-0.022, +0.017]  no clear difference
+
+Step 8 done in 3.2 min. Outputs in /tmp/cleantest/data/models/step8
