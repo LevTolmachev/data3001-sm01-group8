@@ -12,6 +12,4 @@ the frozen drifter splits, M0-M2), so keep all files together in one code/ folde
 | M7 memory (cell + yesterday's direction, 4,004 states) | step10_memory_models.py | sector, arrival_class, Memory, forecast_memory |
 | Scoring used by all of them (log score, 90% areas, bootstrap over drifters) | step4_drogue_season_gam_nn.py | forecast, score, drifter_boot, paired |
 
-To run: install uv, then `uv sync`, then run the scripts in this order from the folder: step2, step3, step4, step5, step8, step9, step10, step12
-(e.g. `uv run python code/step2_models_M0_M1_M2.py`). Do not use run_all.py with this bundle: it also calls steps that are only in the full repository.
-The scripts need the data files in data/ (gdp_bmc_extract.parquet at minimum), which are in the full repository.
+All of these run as part of `uv run python run_all.py` (see the README).

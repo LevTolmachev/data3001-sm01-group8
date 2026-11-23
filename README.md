@@ -69,7 +69,7 @@ Everything in `data/` was downloaded once and committed, so the results don't de
 | 7 | `step7_build_viewer` | Builds the viewer | < 0.1 min |
 | 15 | `step15_report_figures` | Report Figures 1–7 and 9 | 1 min |
 
-Step 1 and `get_winds.py` only run with `--download`. The numbers aren't consecutive because steps were added as the project grew. `M3_M7_GUIDE.md` says which script and function holds each of models M3 to M7.
+Step 1 and `get_winds.py` only run with `--download`. The numbers aren't consecutive because steps were added as the project grew. `M3_M7_GUIDE.md` says which script and function holds each of models M3 to M7. `code/extras/exit_baseline.py` computes the constant exit-share baseline for the exit-edge Brier score in Section 6.4 (run it after step 5).
 
 Settings were chosen on validation drifters. The test drifters were first scored in step 5 and scored again in steps 8, 10, 12 and 13; Section 4.3 of the report discusses this. Seeds are fixed, so a rerun gives the same numbers, although network results can differ in the last digit between operating systems.
 
